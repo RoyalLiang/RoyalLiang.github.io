@@ -17,7 +17,7 @@
   <meta name="description" content="编程，浪子。">
   <meta name="author" content="RoyalLiang">
   <meta name="keywords" content="">
-  <title>使用Supervisor管理Python Celery - 菜鸟记录营</title>
+  <title>重拾Hexo主题博客 - 菜鸟记录营</title>
 
   <link  rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/4.4.1/css/bootstrap.min.css" />
 <link  rel="stylesheet" href="https://cdn.staticfile.org/github-markdown-css/4.0.0/github-markdown.min.css" />
@@ -143,7 +143,7 @@
                   
                   <span class="post-meta mr-2">
                     <i class="iconfont icon-chart"></i>
-                    842 字
+                    841 字
                   </span>
                 
 
@@ -182,7 +182,7 @@
           <div class="post-content mx-auto" id="post">
             
             <article class="markdown-body">
-              <h1 id="重拾Hexo主题博客"><a href="#重拾Hexo主题博客" class="headerlink" title="重拾Hexo主题博客"></a>重拾Hexo主题博客</h1><p>去年6月份，接触到了hexo静态博客，一时兴起之下，就跟着教程搭了一个。但只是搭了一个，之后就再也没用过了。一个月之前我便在思考重试起我的博客网站，但依然没想好是使用前后端分离，还是直接使用模板语言，亦或是hexo。一个月后，终于决定还是使用hexo搭建，一时多熟悉一下hexo，第二也是最重要的一点是，想要借助静态博客，锻炼一下我的markdown写作能力，好了，正文开始，此篇为记录下搭建过程。<br><strong>本文不介绍详细安装过程</strong></p>
+              <p>去年6月份，接触到了hexo静态博客，一时兴起之下，就跟着教程搭了一个。但只是搭了一个，之后就再也没用过了。一个月之前我便在思考重试起我的博客网站，但依然没想好是使用前后端分离，还是直接使用模板语言，亦或是hexo。一个月后，终于决定还是使用hexo搭建，一时多熟悉一下hexo，第二也是最重要的一点是，想要借助静态博客，锻炼一下我的markdown写作能力，好了，正文开始，此篇为记录下搭建过程。<br><strong>本文不介绍详细安装过程</strong></p>
 <h1 id="工具-环境搭建"><a href="#工具-环境搭建" class="headerlink" title="工具/环境搭建"></a>工具/环境搭建</h1><h2 id="安装nodejs"><a href="#安装nodejs" class="headerlink" title="安装nodejs"></a>安装nodejs</h2><p>由于hexo基于nodejs，所以在使用hexo之前需要安装nodejs，安装nodejs方法这里不再赘述，各位看官直接网搜教程即可<br><strong>PS:尽量安装最新/稳定版本的nodejs</strong></p>
 <h2 id="安装hexo"><a href="#安装hexo" class="headerlink" title="安装hexo"></a>安装hexo</h2><p>安装好node之后，就可以安装hexo了。打开Terminal，输入npm i hexo-cli -g，等待安装结束后，hexo便安装好了。<br><strong>如果嫌弃安装速度过慢的话，可以配置一下npm的国内下载源，这里不再赘述，直接搜淘宝npm</strong></p>
 <h2 id="使用github"><a href="#使用github" class="headerlink" title="使用github"></a>使用github</h2><h3 id="安装git"><a href="#安装git" class="headerlink" title="安装git"></a>安装git</h3><p>没有过github经历的朋友，先去网上搜一下github(国内访问可能会慢)，跟着网站指引，注册一个账号后在本级下载git工具。下载地址:<a href="https://git-scm.com/downloads" target="_blank" rel="noopener">官网下载</a></p>
@@ -195,10 +195,12 @@ ssh-keygen -t rsa -C &quot;用来注册git的邮箱号码&quot;
 <h3 id="其他设置"><a href="#其他设置" class="headerlink" title="其他设置"></a>其他设置</h3><p>创建仓库之后，点击仓库右上角的setting按钮，页面下拉，找到github page，点击choose themes即可开始使用github静态博客。</p>
 <h2 id="创建博客"><a href="#创建博客" class="headerlink" title="创建博客"></a>创建博客</h2><p>添加一个博客目录，例如c://projects/hexoproject<br>在该路径打开Terminal，执行如下命令：<br>初始化hexo博客<br><code>hexo init
 hexo g</code><br>启动服务<br><code>hexo s</code><br>上传到git(需要先配置config文件)<br><code>hexo d</code></p>
-<h3 id="设置博客配置git"><a href="#设置博客配置git" class="headerlink" title="设置博客配置git"></a>设置博客配置git</h3><p>打开博客根目录下的_config.yml文件，找到最后修改为：<br><code>deploy:
+<h3 id="设置博客配置git"><a href="#设置博客配置git" class="headerlink" title="设置博客配置git"></a>设置博客配置git</h3><p>打开博客根目录下的_config.yml文件，找到最后修改为：</p>
+<pre><code class="hljs plain">deploy:
   type: git
-  repository: https://github.com/用户名/项目名.github.io
-  branch: master</code><br>配置完成后即可使用hexo d命令</p>
+  repository: https:&#x2F;&#x2F;github.com&#x2F;用户名&#x2F;项目名.github.io
+  branch: master</code></pre>
+<p>配置完成后即可使用hexo d命令</p>
 <h3 id="绑定域名"><a href="#绑定域名" class="headerlink" title="绑定域名"></a>绑定域名</h3><p>购买域名，实名认证、域名备案为前提。<br>解决完上述问题之后，打开域名控制台，设置域名解析，添加两个CNAME解析，主机记录分别为www和@，记录值都是项目名称xxx.github.io<br>完成后，在git项目页面点击setting，下拉找到custom domain，将其值设置为你的域名，点击保存即可。<br>以上即为本文的全部内容，只是记录博客的基本设置，进阶设置各位看官直接百度即可。好了，再见～</p>
 <p><img src="https://rookies.oss-cn-shanghai.aliyuncs.com/SC04C06.jpg" srcset="/RoyalLiang.github.io/img/loading.gif" alt=""></p>
 
@@ -376,7 +378,7 @@ hexo g</code><br>启动服务<br><code>hexo s</code><br>上传到git(需要先�
     var typed = new Typed('#subtitle', {
       strings: [
         '  ',
-        "使用Supervisor管理Python Celery&nbsp;",
+        "重拾Hexo主题博客&nbsp;",
       ],
       cursorChar: "_",
       typeSpeed: 70,
