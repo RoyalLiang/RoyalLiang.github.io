@@ -17,7 +17,7 @@
   <meta name="description" content="编程，浪子。">
   <meta name="author" content="RoyalLiang">
   <meta name="keywords" content="">
-  <title>重拾Hexo主题博客 - 菜鸟记录营</title>
+  <title>万能的supervisor，托起了无数个后台程序 - 菜鸟记录营</title>
 
   <link  rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/4.4.1/css/bootstrap.min.css" />
 <link  rel="stylesheet" href="https://cdn.staticfile.org/github-markdown-css/4.0.0/github-markdown.min.css" />
@@ -132,8 +132,8 @@
               
                 <div class="mt-3 post-meta">
                   <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-                  <time datetime="2020-04-20 15:45">
-                    星期一, 四月 20日 2020, 3:45 下午
+                  <time datetime="2020-05-08 13:51">
+                    星期五, 五月 8日 2020, 1:51 下午
                   </time>
                 </div>
               
@@ -143,7 +143,7 @@
                   
                   <span class="post-meta mr-2">
                     <i class="iconfont icon-chart"></i>
-                    841 字
+                    1.4k 字
                   </span>
                 
 
@@ -153,7 +153,7 @@
                       <i class="iconfont icon-clock-fill"></i>
                     
                     
-                    9
+                    18
                      分钟
                   </span>
                 
@@ -182,40 +182,134 @@
           <div class="post-content mx-auto" id="post">
             
             <article class="markdown-body">
-              <p>去年6月份，接触到了hexo静态博客，一时兴起之下，就跟着教程搭了一个。但只是搭了一个，之后就再也没用过了。一个月之前我便在思考重试起我的博客网站，但依然没想好是使用前后端分离，还是直接使用模板语言，亦或是hexo。一个月后，终于决定还是使用hexo搭建，一时多熟悉一下hexo，第二也是最重要的一点是，想要借助静态博客，锻炼一下我的markdown写作能力，好了，正文开始，此篇为记录下搭建过程。<br><strong>本文不介绍详细安装过程</strong></p>
-<h1 id="工具-环境搭建"><a href="#工具-环境搭建" class="headerlink" title="工具/环境搭建"></a>工具/环境搭建</h1><h2 id="安装nodejs"><a href="#安装nodejs" class="headerlink" title="安装nodejs"></a>安装nodejs</h2><p>由于hexo基于nodejs，所以在使用hexo之前需要安装nodejs，安装nodejs方法这里不再赘述，各位看官直接网搜教程即可<br><strong>PS:尽量安装最新/稳定版本的nodejs</strong></p>
-<h2 id="安装hexo"><a href="#安装hexo" class="headerlink" title="安装hexo"></a>安装hexo</h2><p>安装好node之后，就可以安装hexo了。打开Terminal，输入npm i hexo-cli -g，等待安装结束后，hexo便安装好了。<br><strong>如果嫌弃安装速度过慢的话，可以配置一下npm的国内下载源，这里不再赘述，直接搜淘宝npm</strong></p>
-<h2 id="使用github"><a href="#使用github" class="headerlink" title="使用github"></a>使用github</h2><h3 id="安装git"><a href="#安装git" class="headerlink" title="安装git"></a>安装git</h3><p>没有过github经历的朋友，先去网上搜一下github(国内访问可能会慢)，跟着网站指引，注册一个账号后在本级下载git工具。下载地址:<a href="https://git-scm.com/downloads" target="_blank" rel="noopener">官网下载</a></p>
-<h3 id="设置git"><a href="#设置git" class="headerlink" title="设置git"></a>设置git</h3><p>下载之后设置邮箱、用户名、ssh-key，将public-key添加到git我的ssh—key中即可，这里不再赘述，命令如下：<br><code>git config --global user.name &quot;你的git用户名&quot;
-git config --global user.email &quot;用来注册git的邮箱号码&quot;
-生成密钥SSH key：
-ssh-keygen -t rsa -C &quot;用来注册git的邮箱号码&quot;
-生成的ssh-key路径在C://users/电脑用户名/.ssh/下的rsa_pub(Windows)，Mac/Linux的路径为~/.ssh/id_rsa.pub</code></p>
-<h3 id="创建仓库"><a href="#创建仓库" class="headerlink" title="创建仓库"></a>创建仓库</h3><p>上述操作做好之后，将你的公钥配置在git中即可。<br>之后新建仓库，名称随意，但在名字后必须加上.github.io。且仓库需要是公共仓库。</p>
-<h3 id="其他设置"><a href="#其他设置" class="headerlink" title="其他设置"></a>其他设置</h3><p>创建仓库之后，点击仓库右上角的setting按钮，页面下拉，找到github page，点击choose themes即可开始使用github静态博客。</p>
-<h2 id="创建博客"><a href="#创建博客" class="headerlink" title="创建博客"></a>创建博客</h2><p>添加一个博客目录，例如c://projects/hexoproject<br>在该路径打开Terminal，执行如下命令：<br>初始化hexo博客<br><code>hexo init
-hexo g</code><br>启动服务<br><code>hexo s</code><br>上传到git(需要先配置config文件)<br><code>hexo d</code></p>
-<h3 id="设置博客配置git"><a href="#设置博客配置git" class="headerlink" title="设置博客配置git"></a>设置博客配置git</h3><p>打开博客根目录下的_config.yml文件，找到最后修改为：</p>
-<pre><code class="hljs plain">deploy:
-  type: git
-  repository: https:&#x2F;&#x2F;github.com&#x2F;用户名&#x2F;项目名.github.io
-  branch: master</code></pre>
-<p>配置完成后即可使用hexo d命令</p>
-<h3 id="绑定域名"><a href="#绑定域名" class="headerlink" title="绑定域名"></a>绑定域名</h3><p>购买域名，实名认证、域名备案为前提。<br>解决完上述问题之后，打开域名控制台，设置域名解析，添加两个CNAME解析，主机记录分别为www和@，记录值都是项目名称xxx.github.io<br>完成后，在git项目页面点击setting，下拉找到custom domain，将其值设置为你的域名，点击保存即可。<br>以上即为本文的全部内容，只是记录博客的基本设置，进阶设置各位看官直接百度即可。好了，再见～</p>
-<p><img src="https://rookies.oss-cn-shanghai.aliyuncs.com/SC04C06.jpg" srcset="/RoyalLiang.github.io/img/loading.gif" alt=""></p>
+              <p>title: 万能的supervisor，托起了无数个后台程序</p>
+<h1 id="supervisor简介"><a href="#supervisor简介" class="headerlink" title="supervisor简介"></a>supervisor简介</h1><blockquote>
+<p>Supervisor is a client/server system that allows its users to monitor and control a number of processes on UNIX-like operating systems.</p>
+<p>It shares some of the same goals of programs like launchd, daemontools, and runit. Unlike some of these programs, it is not meant to be run as a substitute for <code>init</code> as “process id 1”. Instead it is meant to be used to control processes related to a project or a customer, and is meant to start like any other program at boot time.</p>
+<p>官方文档：<a href="[*文档在此*](http://supervisord.org/)">点击此处</a></p>
+</blockquote>
+<p>以上摘自官网，简单来说，supervisor是一个基于Python开发的通用的进程管理程序，是Linux/Unix系统上的进程监控工具，可以管理和监控Linux上面的进程，能将一个普通的命令行进程变为后台daemon，并监控进程状态。</p>
+<h1 id="使用"><a href="#使用" class="headerlink" title="使用"></a>使用</h1><h2 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h2><ol>
+<li><p>直接使用pip安装</p>
+<blockquote>
+<p>pip install supervisor</p>
+</blockquote>
+</li>
+</ol>
+<ol start="2">
+<li><p>使用easy_install</p>
+<blockquote>
+<p>yum/apt-get install python-setuptools</p>
+<p>easy_install supervisor</p>
+</blockquote>
+</li>
+</ol>
+<h2 id="配置"><a href="#配置" class="headerlink" title="配置"></a>配置</h2><p>安装完成后首先设置配置文件</p>
+<pre><code class="hljs python">echo_supervisord_conf &gt; 目标文件夹/supervisod.conf</code></pre>
+
+<p>设置配置文件（最简配置）</p>
+<pre><code class="hljs python">[inet_http_server] 
+port=<span class="hljs-number">127.0</span><span class="hljs-number">.0</span><span class="hljs-number">.1</span>:<span class="hljs-number">9001</span>;	<span class="hljs-comment"># 开启web server，外网访问请设置成0.0.0.0 </span>
+ 
+[supervisorctl]
+serverurl=unix:///tmp/supervisor.sock ; 
+serverurl=http://<span class="hljs-number">127.0</span><span class="hljs-number">.0</span><span class="hljs-number">.1</span>:<span class="hljs-number">9001</span> ;
+ 
+[include]
+files = *.ini	<span class="hljs-comment"># 包含当前目录下的所有.ini的配置文件</span></code></pre>
+
+<h2 id="使用-1"><a href="#使用-1" class="headerlink" title="使用"></a>使用</h2><p>supervisor包含命令行与网页模式。</p>
+<p>supervisorctl：命令行工具，提供一个类似shell的操作接口，通过它你可以连接到不同的supervisord进程上来管理它们各自的子程序，命令通过UNIX socket或者TCP来和服务通讯。</p>
+<p>相关命令：</p>
+<blockquote>
+<p>status：查看当前所有托管程序列表</p>
+<p>update： 更新所有/选择程序状态</p>
+<p>reload：重启supervisor</p>
+<p>start 【program_name】：启动某个进程</p>
+<p>restart 【program_name】：重启某个进程</p>
+<p>stop 【program_name】：停止【program_name】进程</p>
+<p>stop groupworker：重启所有属于名为groupworker这个分组的进程(start,restart同理)</p>
+<p>stop all：停止全部进程，注：start、restart、stop都不会载入最新的配置文</p>
+<p>reread：当一个服务由自动启动修改为手动启动时执行一下就ok</p>
+</blockquote>
+<p>Web Server：通过web控制进程。</p>
+<blockquote>
+<p>PS：需要设置[inet_http_server]配置项</p>
+</blockquote>
+<h2 id="启动"><a href="#启动" class="headerlink" title="启动"></a>启动</h2><blockquote>
+<p>supervisord -c supervisor配置文件夹/supervisord.conf</p>
+</blockquote>
+<h1 id="托管程序配置文件示例"><a href="#托管程序配置文件示例" class="headerlink" title="托管程序配置文件示例"></a>托管程序配置文件示例</h1><blockquote>
+<p>test.ini</p>
+</blockquote>
+<pre><code class="hljs plain">[program:显示名称]
+command&#x3D;x x x	;需要执行的命令，可携带路径
+directory&#x3D;XXX&#x2F;XXX       ; 工作路径
+priority&#x3D;999                  ; 优先级，默认999
+startsecs &#x3D; 5        ; 启动 5 秒后没有异常退出，则认为正常启动
+autorestart &#x3D; true   ; 程序异常退出后自动重启
+startretries &#x3D; 3     ; 启动失败自动重试次数，默认3
+enviroment&#x3D;PATH&#x3D;&quot;使用环境&quot;	;例如：&#x2F;xxx&#x2F;xxx&#x2F;虚拟环境&#x2F;bin&#x2F;
+stdout_logfile &#x3D; &#x2F;xxx&#x2F;logs&#x2F;scheduler.log	;输出日志
+stderr_logfile &#x3D; &#x2F;xxx&#x2F;logs&#x2F;scheduler_err.log	;错误输出日志
+#把stderr重定向到stdout，默认 false
+redirect_stderr &#x3D; false
+# 防止出现僵尸进程
+stopasgroup&#x3D;true
+killasgroup&#x3D;true</code></pre>
+
+<h1 id="扩展"><a href="#扩展" class="headerlink" title="扩展"></a>扩展</h1><p>配置参数介绍</p>
+<pre><code class="hljs plain">[unix_http_server]
+file&#x3D;&#x2F;tmp&#x2F;supervisor.sock   ;UNIX socket 文件，supervisorctl 会使用
+;chmod&#x3D;0700                 ;socket文件的mode，默认是0700
+;chown&#x3D;nobody:nogroup       ;socket文件的owner，格式：uid:gid
+ 
+;[inet_http_server]         ;HTTP服务器，提供web管理界面
+;port&#x3D;127.0.0.1:9001        ;Web管理后台运行的IP和端口，如果开放到公网，需要注意安全性
+;username&#x3D;user              ;登录管理后台的用户名
+;password&#x3D;123               ;登录管理后台的密码
+ 
+[supervisord]
+logfile&#x3D;&#x2F;tmp&#x2F;supervisord.log ;日志文件，默认是 $CWD&#x2F;supervisord.log
+logfile_maxbytes&#x3D;50MB        ;日志文件大小，超出会rotate，默认 50MB，如果设成0，表示不限制大小
+logfile_backups&#x3D;10           ;日志文件保留备份数量默认10，设为0表示不备份
+loglevel&#x3D;info                ;日志级别，默认info，其它: debug,warn,trace
+pidfile&#x3D;&#x2F;tmp&#x2F;supervisord.pid ;pid 文件
+nodaemon&#x3D;false               ;是否在前台启动，默认是false，即以 daemon 的方式启动
+minfds&#x3D;1024                  ;可以打开的文件描述符的最小值，默认 1024
+minprocs&#x3D;200                 ;可以打开的进程数的最小值，默认 200
+ 
+[supervisorctl]
+serverurl&#x3D;unix:&#x2F;&#x2F;&#x2F;tmp&#x2F;supervisor.sock ;通过UNIX socket连接supervisord，路径与unix_http_server部分的file一致
+;serverurl&#x3D;http:&#x2F;&#x2F;127.0.0.1:9001 ; 通过HTTP的方式连接supervisord
+ 
+; [program:xx]是被管理的进程配置参数，xx是进程的名称
+[program:xx]
+command&#x3D;&#x2F;opt&#x2F;apache-tomcat-8.0.35&#x2F;bin&#x2F;catalina.sh run  ; 程序启动命令
+autostart&#x3D;true       ; 在supervisord启动的时候也自动启动
+startsecs&#x3D;10         ; 启动10秒后没有异常退出，就表示进程正常启动了，默认为1秒
+autorestart&#x3D;true     ; 程序退出后自动重启,可选值：[unexpected,true,false]，默认为unexpected，表示进程意外杀死后才重启
+startretries&#x3D;3       ; 启动失败自动重试次数，默认是3
+user&#x3D;tomcat          ; 用哪个用户启动进程，默认是root
+priority&#x3D;999         ; 进程启动优先级，默认999，值小的优先启动
+redirect_stderr&#x3D;true ; 把stderr重定向到stdout，默认false
+stdout_logfile_maxbytes&#x3D;20MB  ; stdout 日志文件大小，默认50MB
+stdout_logfile_backups &#x3D; 20   ; stdout 日志文件备份数，默认是10
+; stdout 日志文件，需要注意当指定目录不存在时无法正常启动，所以需要手动创建目录（supervisord 会自动创建日志文件）
+stdout_logfile&#x3D;&#x2F;opt&#x2F;apache-tomcat-8.0.35&#x2F;logs&#x2F;catalina.out
+stopasgroup&#x3D;false     ;默认为false,进程被杀死时，是否向这个进程组发送stop信号，包括子进程
+killasgroup&#x3D;false     ;默认为false，向进程组发送kill信号，包括子进程
+ 
+;包含其它配置文件
+[include]
+files &#x3D; relative&#x2F;directory&#x2F;*.ini    ;可以指定一个或多个以.ini结束的配置文件</code></pre>
+
 
             </article>
             <hr>
             <div>
               <div class="post-metas mb-3">
                 
-                
-                  <div class="post-meta">
-                    <i class="iconfont icon-tags"></i>
-                    
-                      <a class="hover-with-bg" href="/RoyalLiang.github.io/tags/%E9%9A%8F%E7%AC%94/">随笔</a>
-                    
-                  </div>
                 
               </div>
               
@@ -226,18 +320,12 @@ hexo g</code><br>启动服务<br><code>hexo s</code><br>上传到git(需要先�
                   <div class="post-prev col-6">
                     
                     
-                      <a href="/RoyalLiang.github.io/2020/05/08/%E4%B8%87%E8%83%BD%E7%9A%84supervisor%EF%BC%8C%E6%89%98%E8%B5%B7%E4%BA%86%E6%97%A0%E6%95%B0%E4%B8%AA%E5%90%8E%E5%8F%B0%E7%A8%8B%E5%BA%8F/">
-                        <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">万能的supervisor，托起了无数个后台程序</span>
-                        <span class="visible-mobile">上一篇</span>
-                      </a>
-                    
                   </div>
                   <div class="post-next col-6">
                     
                     
-                      <a href="/RoyalLiang.github.io/2020/04/19/hello-world/">
-                        <span class="hidden-mobile">Hello World</span>
+                      <a href="/RoyalLiang.github.io/2020/04/20/%E9%87%8D%E6%8B%BEHexo/">
+                        <span class="hidden-mobile">重拾Hexo主题博客</span>
                         <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>
@@ -384,7 +472,7 @@ hexo g</code><br>启动服务<br><code>hexo s</code><br>上传到git(需要先�
     var typed = new Typed('#subtitle', {
       strings: [
         '  ',
-        "重拾Hexo主题博客&nbsp;",
+        "万能的supervisor，托起了无数个后台程序&nbsp;",
       ],
       cursorChar: "_",
       typeSpeed: 70,
