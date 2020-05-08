@@ -17,7 +17,7 @@
   <meta name="description" content="编程，浪子。">
   <meta name="author" content="RoyalLiang">
   <meta name="keywords" content="菜鸟,记录,营">
-  <title>归档 - 菜鸟记录营</title>
+  <title>Redis学习笔记 (1) - 菜鸟记录营</title>
 
   <link  rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/4.4.1/css/bootstrap.min.css" />
 <link  rel="stylesheet" href="https://cdn.staticfile.org/github-markdown-css/4.0.0/github-markdown.min.css" />
@@ -46,7 +46,7 @@
 
 
 <body>
-  <header style="height: 80vh;">
+  <header style="height: 70vh;">
     <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
   <div class="container">
     <a class="navbar-brand"
@@ -129,6 +129,38 @@
             </span>
 
             
+              
+                <div class="mt-3 post-meta">
+                  <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+                  <time datetime="2020-05-08 23:00">
+                    星期五, 五月 8日 2020, 11:00 晚上
+                  </time>
+                </div>
+              
+
+              <div class="mt-1">
+                
+                  
+                  <span class="post-meta mr-2">
+                    <i class="iconfont icon-chart"></i>
+                    419 字
+                  </span>
+                
+
+                
+                  
+                  <span class="post-meta mr-2">
+                      <i class="iconfont icon-clock-fill"></i>
+                    
+                    
+                    4
+                     分钟
+                  </span>
+                
+
+                
+              </div>
+            
           </div>
 
           
@@ -139,37 +171,169 @@
 
   <main>
     
-      <div class="container nopadding-md">
-        <div class="py-5" id="board"
-          >
-          
-          <div class="container">
-            <div class="row">
-              <div class="col-12 col-md-10 m-auto">
+      
+
+<div class="container-fluid">
+  <div class="row">
+    <div class="d-none d-lg-block col-lg-2"></div>
+    <div class="col-lg-8 nopadding-md">
+      <div class="container nopadding-md" id="board-ctn">
+        <div class="py-5" id="board">
+          <div class="post-content mx-auto" id="post">
+            
+            <article class="markdown-body">
+              <p>第一次接触Redis，已经记不清是什么时候了，那时候对它的唯一印象就是它是数据库，还能做缓存。对于它的底层，数据结构什么的一概不知，更不用说什么缓存，消息通知什么的了。前段时间又系统的看了一遍Redis视频教程和书本教程，在此做个记录。毕竟好记性不如烂笔头。此为开篇。</p>
+<h1 id="初识Redis"><a href="#初识Redis" class="headerlink" title="初识Redis"></a>初识Redis</h1><p>Redis是基于key-value的存储服务系统，支持多种数据结构，并且是开源的。</p>
+<h2 id="特性"><a href="#特性" class="headerlink" title="特性"></a>特性</h2><ol>
+<li><p>速度快</p>
+<p>Redis速度之所以快的最根本原因，是因为其数据存在内存中。</p>
+</li>
+<li><p>持久化</p>
+<p>以异步的方式将数据保存在硬盘上</p>
+<ul>
+<li>RDB</li>
+<li>AOF</li>
+</ul>
+</li>
+<li><p>多种数据格式</p>
+<ul>
+<li><p>字符串</p>
+</li>
+<li><p>list</p>
+</li>
+<li><p>哈希</p>
+</li>
+<li><p>集合</p>
+</li>
+<li><p>有序集合</p>
+</li>
+<li><p>Bitmaps：位图</p>
+</li>
+<li><p>HyperLogLog：超小内存唯一值计数</p>
+</li>
+<li><p>GEO：地理信息定位</p>
+</li>
+</ul>
+</li>
+<li><p>多功能</p>
+<ul>
+<li>发布订阅</li>
+<li>事务</li>
+<li>Lua脚本</li>
+<li>pipeline</li>
+</ul>
+</li>
+</ol>
+<h2 id="安装-启动"><a href="#安装-启动" class="headerlink" title="安装/启动"></a>安装/启动</h2><h3 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h3><pre><code class="hljs plain"># Linux
+# 获取安装包
+wget 安装包链接
+# 解压
+tar -zxvf 安装包
+# 添加软连接
+ln -s 安装包 redis
+# 安装
+cd redis
+make &amp;&amp; make install</code></pre>
+
+<p>Redis目录可执行文件说明：</p>
+<ul>
+<li>redis-server: Redis服务器</li>
+<li>redis-cli: Redis命令行客户端</li>
+<li>redis-benchmark：Redis性能测试工具</li>
+<li>redis-check-aof：AOF文件修复工具</li>
+<li>redis-check-dump：RDB文件修复工具</li>
+<li>redis-sentinel：Sentinel服务器</li>
+</ul>
+<h3 id="启动"><a href="#启动" class="headerlink" title="启动"></a>启动</h3><p>最简启动</p>
+<blockquote>
+<p>redis-server</p>
+</blockquote>
+<p>动态参数启动</p>
+<blockquote>
+<p>redis-server –port xxx –host xxx.xxx.xxx.xxx –a password</p>
+</blockquote>
+<p>配置文件启动</p>
+<blockquote>
+<p>redis-server /xxx/xxx/conf/redis-xxx.conf</p>
+</blockquote>
+<h2 id="常用-最简-配置"><a href="#常用-最简-配置" class="headerlink" title="常用(最简)配置"></a>常用(最简)配置</h2><ul>
+<li>daemonize：是否守护进程(no | yes)</li>
+<li>port：对外端口号</li>
+<li>logfile： 系统日志文件</li>
+<li>dir：工作目录</li>
+</ul>
+
+            </article>
+            <hr>
+            <div>
+              <div class="post-metas mb-3">
+                
+                  <div class="post-meta mr-3">
+                    <i class="iconfont icon-category"></i>
+                    
+                      <a class="hover-with-bg" href="/RoyalLiang.github.io/categories/Redis/">Redis</a>
+                    
+                  </div>
+                
+                
+                  <div class="post-meta">
+                    <i class="iconfont icon-tags"></i>
+                    
+                      <a class="hover-with-bg" href="/RoyalLiang.github.io/tags/Redis/">Redis</a>
+                    
+                  </div>
+                
+              </div>
+              
+                <p class="note note-warning">本博客所有文章除特别声明外，均采用 <a href="https://zh.wikipedia.org/wiki/Wikipedia:CC_BY-SA_3.0%E5%8D%8F%E8%AE%AE%E6%96%87%E6%9C%AC" target="_blank" rel="nofollow noopener noopener">CC BY-SA 3.0协议</a> 。转载请注明出处！</p>
+              
+              
+                <div class="post-prevnext row">
+                  <div class="post-prev col-6">
+                    
+                    
+                  </div>
+                  <div class="post-next col-6">
+                    
+                    
+                      <a href="/RoyalLiang.github.io/2020/05/08/%E4%B8%87%E8%83%BD%E7%9A%84supervisor%EF%BC%8C%E6%89%98%E8%B5%B7%E4%BA%86%E6%97%A0%E6%95%B0%E4%B8%AA%E5%90%8E%E5%8F%B0%E7%A8%8B%E5%BA%8F/">
+                        <span class="hidden-mobile">Python Supervisor使用教程</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </div>
+                </div>
+              
+            </div>
+
+            
+              <!-- Comments -->
+              <div class="comments" id="comments">
+                
                 
 
-<div class="list-group">
-  <p class="h4">共计 3 篇文章</p>
-  <hr>
-  
-    
-      
-      <p class="h5">2020</p>
-    
-    <a href="/RoyalLiang.github.io/2020/04/20/%E9%87%8D%E6%8B%BEHexo/" class="list-group-item list-group-item-action">
-      <span class="archive-post-title">重拾Hexo主题博客</span>
-      <span style="float: right;">04-20</span>
-    </a>
-  
-</div>
-
-
-
               </div>
-            </div>
+            
           </div>
         </div>
       </div>
+    </div>
+    
+      <div class="d-none d-lg-block col-lg-2 toc-container" id="toc-ctn">
+        <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
+  <div id="tocbot"></div>
+</div>
+
+      </div>
+    
+  </div>
+</div>
+
+<!-- Custom -->
+
+
     
   </main>
 
@@ -240,6 +404,34 @@
 
 
 
+  
+  <script  src="https://cdn.staticfile.org/tocbot/4.11.1/tocbot.min.js" ></script>
+  <script>
+    $(document).ready(function () {
+      var boardCtn = $('#board-ctn');
+      var boardTop = boardCtn.offset().top;
+
+      tocbot.init({
+        tocSelector: '#tocbot',
+        contentSelector: '.post-content',
+        headingSelector: 'h1,h2,h3,h4,h5,h6',
+        linkClass: 'tocbot-link',
+        activeLinkClass: 'tocbot-active-link',
+        listClass: 'tocbot-list',
+        isCollapsedClass: 'tocbot-is-collapsed',
+        collapsibleClass: 'tocbot-is-collapsible',
+        collapseDepth: 0,
+        scrollSmooth: true,
+        headingsOffset: -boardTop
+      });
+      if ($('.toc-list-item').length > 0) {
+        $('#toc').css('visibility', 'visible');
+      }
+    });
+  </script>
+
+
+
 
 
   <script defer src="https://cdn.staticfile.org/clipboard.js/2.0.6/clipboard.min.js" ></script>
@@ -283,7 +475,7 @@
     var typed = new Typed('#subtitle', {
       strings: [
         '  ',
-        "犬吠水声中，桃花带雨浓。&nbsp;",
+        "Redis学习笔记 (1)&nbsp;",
       ],
       cursorChar: "_",
       typeSpeed: 70,
@@ -326,6 +518,20 @@
   </script>
 
 
+
+  <script  src="https://cdn.staticfile.org/fancybox/3.5.7/jquery.fancybox.min.js" ></script>
+  <link  rel="stylesheet" href="https://cdn.staticfile.org/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+  <script>
+    $('#post img:not(.no-zoom img, img[no-zoom]), img[zoom]').each(
+      function () {
+        var element = document.createElement('a');
+        $(element).attr('data-fancybox', 'images');
+        $(element).attr('href', $(this).attr('src'));
+        $(this).wrap(element);
+      }
+    );
+  </script>
 
 
 
