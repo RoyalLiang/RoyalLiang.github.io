@@ -4,6 +4,33 @@
   
   
   <entry>
+    <title>CentOS7 安装Redis6.0</title>
+    <link href="/RoyalLiang.github.io/2020/05/13/CentOS7-%E5%AE%89%E8%A3%85Redis6.0/"/>
+    <url>/RoyalLiang.github.io/2020/05/13/CentOS7-%E5%AE%89%E8%A3%85Redis6.0/</url>
+    
+    <content type="html"><![CDATA[<p>今天给一台崭新的服务器(CentOS 7.7)安装Redis时才发现，Redis已经更新到了6.0(手动滑稽)，抱着用心不用旧的心态，立马喜滋滋地下载，上传到服务器上面开始安装，结果刚开始就碰壁了。再次记录一下安装的小坑。本文不讨论Redis6.0的新特性，仅记录安装踩到的坑。</p><h1 id="下载Redis6-0"><a href="#下载Redis6-0" class="headerlink" title="下载Redis6.0"></a>下载Redis6.0</h1><ol><li><p>使用linux wget命令：</p><blockquote><p>wget <a href="http://download.redis.io/releases/redis-6.0.1.tar.gz" target="_blank" rel="noopener">http://download.redis.io/releases/redis-6.0.1.tar.gz</a></p></blockquote></li><li><p>前往官网下载，使用文件传输工具传输至服务器。</p></li></ol><h1 id="安装依赖"><a href="#安装依赖" class="headerlink" title="安装依赖"></a>安装依赖</h1><p>安装Redis需要安装依赖，命令如下：</p><blockquote><p>yum install gcc gcc-c++ -y</p></blockquote><p>需要注意的是，Redis6.0需要gcc版本不能过低，最好5.0版本以上，否则会编译出错。</p><p>升级系统gcc命令如下：</p><ol><li>安装centos-release-scl。</li></ol><blockquote><p>yum install centos-release-scl</p></blockquote><ol start="2"><li>安装devtoolset，注意，如果想安装7.<em>版本的，就改成devtoolset-7-gcc</em>。</li></ol><blockquote><p>yum install devtoolset-8-gcc*</p></blockquote><ol start="3"><li>激活对应的devtoolset，所以你可以一次安装多个版本的devtoolset，需要的时候用下面这条命令切换到对应的版本。</li></ol><blockquote><p>scl enable devtoolset-8 bash</p></blockquote><h1 id="编译、安装"><a href="#编译、安装" class="headerlink" title="编译、安装"></a>编译、安装</h1><p>解压安装包</p><blockquote><p>tar -zxvf 压缩包.tar.gz</p></blockquote><p>进入解压文件夹</p><blockquote><p>cd Redis安装包文件夹</p></blockquote><p>编译、安装</p><blockquote><p>make</p><p>make install </p></blockquote><pre><code class="hljs plain"># 编译make# 安装make install PREFIX&#x3D;&#x2F;usr&#x2F;local&#x2F;redis# PREFIX后的路径可以修改成自己想改的</code></pre><h1 id="添加软链接"><a href="#添加软链接" class="headerlink" title="添加软链接"></a>添加软链接</h1><p>安装完成后，会发现redis-server，redis-cli命令不可用。不用着急。添加两个软连接就可以了，命令如下：</p><pre><code class="hljs plain">添加redis-server软连接ln -s &#x2F;usr&#x2F;local&#x2F;redis&#x2F;bin&#x2F;redis-server &#x2F;usr&#x2F;bin&#x2F;redis-server添加redis-cli软连接ln -s &#x2F;usr&#x2F;local&#x2F;redis&#x2F;bin&#x2F;redis-scli &#x2F;usr&#x2F;bin&#x2F;redis-cli</code></pre><p>以上就是全文安装教程，特此记录，网上破烂教程太多，坑的我不要不要的。</p>]]></content>
+    
+    
+    <categories>
+      
+      <category>Redis</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>教程</tag>
+      
+      <tag>Redis</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
     <title>Redis学习笔记 (1)</title>
     <link href="/RoyalLiang.github.io/2020/05/08/Redis%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-(1)/"/>
     <url>/RoyalLiang.github.io/2020/05/08/Redis%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-(1)/</url>
