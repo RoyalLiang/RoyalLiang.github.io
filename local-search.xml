@@ -4,6 +4,33 @@
   
   
   <entry>
+    <title>Redis设计与实现（1-字符串）</title>
+    <link href="/RoyalLiang.github.io/2020/06/01/Redis%E8%AE%BE%E8%AE%A1%E4%B8%8E%E5%AE%9E%E7%8E%B0%EF%BC%881-%E5%AD%97%E7%AC%A6%E4%B8%B2%EF%BC%89/"/>
+    <url>/RoyalLiang.github.io/2020/06/01/Redis%E8%AE%BE%E8%AE%A1%E4%B8%8E%E5%AE%9E%E7%8E%B0%EF%BC%881-%E5%AD%97%E7%AC%A6%E4%B8%B2%EF%BC%89/</url>
+    
+    <content type="html"><![CDATA[<p>每个sds.h/sdshdr结构表示一个SDS值：</p><pre><code class="hljs plain">struct sdshdr&#123;    &#x2F;&#x2F;记录buf数组重已使用字节的数量，等于SDS所保存字符串的长度    int len;    &#x2F;&#x2F;记录buf数组中未使用字节的数量    int free;    &#x2F;&#x2F;字节数组，用来保存字符串    char buf[];&#125;</code></pre><blockquote><p>free属性的值为0，表示这个SDS没有分配任何未使用空间。</p><p>len属性的值为5，表示这个SDS保存了一个五字节长的字符串。</p><p>buf属性是一个char类型的数组，最后一个字节保存空字符’\0’。</p><p>SDS遵循C字符串以空字符结尾的惯例，保存空字符的1字节空间不计算在SDS的len属性里面。</p></blockquote><p>示例：</p><p><img src="https://cdn.nlark.com/yuque/0/2020/png/330602/1589794936487-625d3192-d976-40a7-ab86-a52da7fef273.png" srcset="/RoyalLiang.github.io/img/loading.gif" alt="yuque_diagram.png"></p><h3 id="SDS与C字符串区别"><a href="#SDS与C字符串区别" class="headerlink" title="SDS与C字符串区别"></a>SDS与C字符串区别</h3><ol><li>C字符串获取长度复杂度为O(n)，SDS为O(1)</li><li>C字符串进行拼接时容易发生缓冲区溢出（拼接时未分配足够的空间，导致数据溢出，覆盖原有数据）</li></ol><blockquote><p>当SDS API需要对SDS进行修改时，API会先检查SDS的空间是否满足修改所需的要求，如果不满足的话，API会自动将SDS的空间扩展至执行修改所需的大小，然后才执行实际的修改操作</p></blockquote><ol><li>SDS减少了修改字符串时的内存重分配次数</li></ol><blockquote><p>C字符串每次在拼接或截断字符串时，必须对内存进行重新分配，否则将会造成内存溢出或内存泄露。</p></blockquote><h3 id="SDS-API"><a href="#SDS-API" class="headerlink" title="SDS API"></a>SDS API</h3><p>未完待续…</p>]]></content>
+    
+    
+    <categories>
+      
+      <category>Redis</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>Redis</tag>
+      
+      <tag>Study</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
     <title>CentOS7 安装Redis6.0</title>
     <link href="/RoyalLiang.github.io/2020/05/13/CentOS7-%E5%AE%89%E8%A3%85Redis6.0/"/>
     <url>/RoyalLiang.github.io/2020/05/13/CentOS7-%E5%AE%89%E8%A3%85Redis6.0/</url>
