@@ -17,7 +17,7 @@
   <meta name="description" content="编程，浪子。">
   <meta name="author" content="RoyalLiang">
   <meta name="keywords" content="菜鸟,记录,营">
-  <title>动态规划问题思维导图 - 菜鸟记录营</title>
+  <title>Redis设计与实现（2-链表） - 菜鸟记录营</title>
 
   <link  rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/4.4.1/css/bootstrap.min.css" />
 <link  rel="stylesheet" href="https://cdn.staticfile.org/github-markdown-css/4.0.0/github-markdown.min.css" />
@@ -132,8 +132,8 @@
               
                 <div class="mt-3 post-meta">
                   <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-                  <time datetime="2020-06-02 08:45">
-                    星期二, 六月 2日 2020, 8:45 早上
+                  <time datetime="2020-06-16 22:48">
+                    星期二, 六月 16日 2020, 10:48 晚上
                   </time>
                 </div>
               
@@ -143,7 +143,7 @@
                   
                   <span class="post-meta mr-2">
                     <i class="iconfont icon-chart"></i>
-                    4 字
+                    1k 字
                   </span>
                 
 
@@ -153,7 +153,7 @@
                       <i class="iconfont icon-clock-fill"></i>
                     
                     
-                    1
+                    11
                      分钟
                   </span>
                 
@@ -182,7 +182,175 @@
           <div class="post-content mx-auto" id="post">
             
             <article class="markdown-body">
-              <p>附图一张<br><img src="http://image.lcremember.com/%E5%BE%AE%E4%BF%A1%E5%9B%BE%E7%89%87_20200522224415.png" srcset="/RoyalLiang.github.io/img/loading.gif" alt=""></p>
+              <p>链表是Redis底层用非常广泛的数据结构。使用范围包含但不限于：列表键，发布与订阅、慢查询、监视器、客户端状态信息等</p>
+<h3 id="链表节点实现"><a href="#链表节点实现" class="headerlink" title="链表节点实现"></a>链表节点实现</h3><p>每个链表节点使用一个adlist.h/listNode结构来表示：</p>
+<pre><code class="hljs plain">typedef struct listNode&#123;
+    &#x2F;&#x2F;前置节点
+    struct listNode * prev;
+    &#x2F;&#x2F;后置节点
+    struct listNode * next;
+    &#x2F;&#x2F;节点值
+    void * value;
+&#125;listNode;</code></pre>
+
+<p>使用多个listNode结构就可以组成链表，但使用adlist.h/list来持有链表的话，操作起来会更方便：</p>
+<pre><code class="hljs plain">typedef struct list&#123;
+    &#x2F;&#x2F;头节点
+    listNode * head;
+    &#x2F;&#x2F;尾节点
+    listNode * tail;
+    &#x2F;&#x2F;链表节点数量
+    unsigned long len;
+    &#x2F;&#x2F;节点值复制函数
+    void *(*dup)(void *ptr);
+    &#x2F;&#x2F;节点值释放函数
+    void *(*free)(void *ptr);
+    &#x2F;&#x2F;节点值比较函数
+    void *(*match)(void *ptr, void *key);
+&#125;list;</code></pre>
+
+<blockquote>
+<p>list结构为链表提供了表头指针head、表尾指针tail，以及链表长度计数器len，而dup、free和match成员则是用于实现多态链表所需的类型特定函数：</p>
+</blockquote>
+<ol>
+<li>dup函数用于复制链表节点所保存的值；</li>
+<li>free函数用于释放链表节点所保存的值；</li>
+<li>match函数则用于对比链表节点所保存的值和另一个输入值是否相等。</li>
+</ol>
+<p>Redis链表特征：</p>
+<ol>
+<li>双端，每个节点都带有prev节点和next节点。</li>
+<li>无环，表头节点的prev指针和表尾节点的next指针都指向NULL，对链表的访问以NULL为终点。</li>
+<li>带表头指针和表尾指针。</li>
+<li>带链表长度计数器，程序使用list结构的len属性来对list持有的链表节点进行计数。</li>
+<li>多态，链表节点使用void*指针来保存节点值，并且可以通过list结构的dup、free、match三个属性为节点值设置类型特定函数，所以链表可以用于保存各种不同类型的值。</li>
+</ol>
+<h3 id="链表-API"><a href="#链表-API" class="headerlink" title="链表 API"></a>链表 API</h3><table>
+<thead>
+<tr>
+<th>函数</th>
+<th>作用</th>
+<th>时间复杂度</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>listSetDupMethod</td>
+<td>将给定的函数设置成链表节点值复制函数</td>
+<td>O(1)，通过链表的dup属性直接获得</td>
+</tr>
+<tr>
+<td>listGetDupMethod</td>
+<td>返回链表当前正在使用的节点值复制函数</td>
+<td>O(1)</td>
+</tr>
+<tr>
+<td>listSetFreeMethod</td>
+<td>将给定的函数设置成链表节点值释放函数</td>
+<td>O(1)</td>
+</tr>
+<tr>
+<td>listGetFree</td>
+<td>返回链表当前节点值释放函数</td>
+<td>O(1)</td>
+</tr>
+<tr>
+<td>listSetMatchMethod</td>
+<td>将给定的函数设置成链表节点值对比函数</td>
+<td>O(1)</td>
+</tr>
+<tr>
+<td>listGetMatchMethod</td>
+<td>返回链表当前节点值对比函数</td>
+<td>O(1)</td>
+</tr>
+<tr>
+<td>listLength</td>
+<td>返回链表长度</td>
+<td>O(1)</td>
+</tr>
+<tr>
+<td>listFirst</td>
+<td>返回链表头节点</td>
+<td>O(1)</td>
+</tr>
+<tr>
+<td>listLast</td>
+<td>返回链表尾节点</td>
+<td>O(1)</td>
+</tr>
+<tr>
+<td>listPrevNode</td>
+<td>返回给定节点的前置节点</td>
+<td>O(1)</td>
+</tr>
+<tr>
+<td>listNextNode</td>
+<td>返回给定节点的后置节点</td>
+<td>O(1)</td>
+</tr>
+<tr>
+<td>listNodeValue</td>
+<td>返回给定节点当前值</td>
+<td>O(1)</td>
+</tr>
+<tr>
+<td>listCreate</td>
+<td>创建不包含任何值的空链表</td>
+<td>O(1)</td>
+</tr>
+<tr>
+<td>listAddNodeHead</td>
+<td>将给定值的新节点添加到表头</td>
+<td>O(1)</td>
+</tr>
+<tr>
+<td>listAddNodeTail</td>
+<td>将给定值的新节点添加到表尾</td>
+<td>O(1)</td>
+</tr>
+<tr>
+<td>listInsertNode</td>
+<td>将给定值的新节点插入到链表指定位置</td>
+<td>O(1)</td>
+</tr>
+<tr>
+<td>listSearchKey</td>
+<td>查找并返回链表中给定值的节点</td>
+<td>O(n)</td>
+</tr>
+<tr>
+<td>listIndex</td>
+<td>返回链表给定索引的节点</td>
+<td>O(n)</td>
+</tr>
+<tr>
+<td>listDelNode</td>
+<td>删除链表给定节点</td>
+<td>O(n)</td>
+</tr>
+<tr>
+<td>listRotate</td>
+<td>将表尾节点弹出并设置成新的表头节点</td>
+<td>O(1)</td>
+</tr>
+<tr>
+<td>listDup</td>
+<td>添加给定链表副本</td>
+<td>O(n)</td>
+</tr>
+<tr>
+<td>listRelease</td>
+<td>释放给定链表</td>
+<td>O(n)</td>
+</tr>
+</tbody></table>
+<h3 id="链表总结"><a href="#链表总结" class="headerlink" title="链表总结"></a>链表总结</h3><ol>
+<li>链表被广泛用于实现Redis的各种功能，比如列表键、发布与订阅、慢查询、监视器等。</li>
+<li>每个链表节点由一个listNode结构来表示，每个节点都有一个指向前置节点和后置节点的指针，所以Redis的链表实现是双端链表。</li>
+<li>每个链表使用一个list结构来表示，这个结构带有表头节点指针、表尾节点指针，以及链表长度等信息。</li>
+<li>因为链表表头节点的前置节点和表尾节点的后置节点都指向NULL，所以Redis的链表实现是无环链表。</li>
+<li>通过为链表设置不同的类型特定函数，Redis的链表可以用于保存各种不同类型的值。</li>
+</ol>
 
             </article>
             <hr>
@@ -192,7 +360,7 @@
                   <div class="post-meta mr-3">
                     <i class="iconfont icon-category"></i>
                     
-                      <a class="hover-with-bg" href="/RoyalLiang.github.io/categories/Study/">Study</a>
+                      <a class="hover-with-bg" href="/RoyalLiang.github.io/categories/Redis/">Redis</a>
                     
                   </div>
                 
@@ -200,7 +368,9 @@
                   <div class="post-meta">
                     <i class="iconfont icon-tags"></i>
                     
-                      <a class="hover-with-bg" href="/RoyalLiang.github.io/tags/%E7%AE%97%E6%B3%95/">算法</a>
+                      <a class="hover-with-bg" href="/RoyalLiang.github.io/tags/Redis/">Redis</a>
+                    
+                      <a class="hover-with-bg" href="/RoyalLiang.github.io/tags/Study/">Study</a>
                     
                   </div>
                 
@@ -213,18 +383,12 @@
                   <div class="post-prev col-6">
                     
                     
-                      <a href="/RoyalLiang.github.io/2020/06/16/Redis%E8%AE%BE%E8%AE%A1%E4%B8%8E%E5%AE%9E%E7%8E%B0%EF%BC%882-%E9%93%BE%E8%A1%A8%EF%BC%89/">
-                        <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">Redis设计与实现（2-链表）</span>
-                        <span class="visible-mobile">上一篇</span>
-                      </a>
-                    
                   </div>
                   <div class="post-next col-6">
                     
                     
-                      <a href="/RoyalLiang.github.io/2020/06/01/Redis%E8%AE%BE%E8%AE%A1%E4%B8%8E%E5%AE%9E%E7%8E%B0%EF%BC%881-%E5%AD%97%E7%AC%A6%E4%B8%B2%EF%BC%89/">
-                        <span class="hidden-mobile">Redis设计与实现（1-字符串）</span>
+                      <a href="/RoyalLiang.github.io/2020/06/02/%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92%E9%97%AE%E9%A2%98%E6%80%9D%E7%BB%B4%E5%AF%BC%E5%9B%BE/">
+                        <span class="hidden-mobile">动态规划问题思维导图</span>
                         <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>
@@ -402,7 +566,7 @@
     var typed = new Typed('#subtitle', {
       strings: [
         '  ',
-        "动态规划问题思维导图&nbsp;",
+        "Redis设计与实现（2-链表）&nbsp;",
       ],
       cursorChar: "_",
       typeSpeed: 70,
