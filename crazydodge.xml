@@ -191,8 +191,7 @@
       
         
         
-    <summary type="html">&lt;p&gt;压缩列表（ziplist）是列表键和哈希键的底层实现之一。当一个列表键只包含少量列表项/当一个哈希键只包含少量键值对，并且每个列表项/每个键值对的键和值 要么就是小整数值，要么就是长度比较短的字符串，那么Redis就会使用压缩列表来做列表键的底层实现。&lt;/p&gt;
-&lt;h3</summary>
+    <summary type="html">&lt;p&gt;压缩列表（ziplist）是列表键和哈希键的底层实现之一。当一个列表键只包含少量列表项&amp;#x2F;当一个哈希键只包含少量键值对，并且每个列表项&amp;#x2F;每个键值对的键和值</summary>
         
       
     
@@ -361,8 +360,8 @@
       
         
         
-    <summary type="html">&lt;p&gt;每个sds.h/sdshdr结构表示一个SDS值：&lt;/p&gt;
-&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span</summary>
+    <summary type="html">&lt;p&gt;每个sds.h&amp;#x2F;sdshdr结构表示一个SDS值：&lt;/p&gt;
+&lt;figure class=&quot;highlight plaintext&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;struct</summary>
         
       
     
