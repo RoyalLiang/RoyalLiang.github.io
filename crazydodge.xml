@@ -1,0 +1,487 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+  <title>悟道程序员</title>
+  <icon>http://example.com/icon.png</icon>
+  <subtitle>微笑向暖，安之若素。</subtitle>
+  <link href="http://example.com/crazydodge.xml" rel="self"/>
+  
+  <link href="http://example.com/"/>
+  <updated>2022-03-31T06:04:45.082Z</updated>
+  <id>http://example.com/</id>
+  
+  <author>
+    <name>RoyalLiang</name>
+    
+  </author>
+  
+  <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>自建博客，关于建站方式的一些事儿</title>
+    <link href="http://example.com/%E8%87%AA%E5%BB%BA%E5%8D%9A%E5%AE%A2%EF%BC%8C%E5%85%B3%E4%BA%8E%E5%BB%BA%E7%AB%99%E6%96%B9%E5%BC%8F%E7%9A%84%E4%B8%80%E4%BA%9B%E4%BA%8B%E5%84%BF.html"/>
+    <id>http://example.com/%E8%87%AA%E5%BB%BA%E5%8D%9A%E5%AE%A2%EF%BC%8C%E5%85%B3%E4%BA%8E%E5%BB%BA%E7%AB%99%E6%96%B9%E5%BC%8F%E7%9A%84%E4%B8%80%E4%BA%9B%E4%BA%8B%E5%84%BF.html</id>
+    <published>2022-03-24T16:00:00.000Z</published>
+    <updated>2022-03-31T06:04:45.082Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;meta name=&quot;referrer&quot;</summary>
+        
+      
+    
+    
+    
+    <category term="随笔" scheme="http://example.com/categories/%E9%9A%8F%E7%AC%94/"/>
+    
+    
+    <category term="王婆卖瓜" scheme="http://example.com/tags/%E7%8E%8B%E5%A9%86%E5%8D%96%E7%93%9C/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Redis 设计与实现(11-事件)</title>
+    <link href="http://example.com/Redis%20%E8%AE%BE%E8%AE%A1%E4%B8%8E%E5%AE%9E%E7%8E%B0(11-%E4%BA%8B%E4%BB%B6).html"/>
+    <id>http://example.com/Redis%20%E8%AE%BE%E8%AE%A1%E4%B8%8E%E5%AE%9E%E7%8E%B0(11-%E4%BA%8B%E4%BB%B6).html</id>
+    <published>2021-11-20T11:40:00.000Z</published>
+    <updated>2022-03-31T06:43:34.288Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;p&gt;Redis 服务器是一个 &lt;code&gt;事件驱动程序&lt;/code&gt;，服务器需要处理以下两类事件：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;文件事件（file event）：Redis服务器通过套接字与客户端进行连接，而文件事件就是服务器对 &lt;code&gt;套接字操作&lt;/code&gt;</summary>
+        
+      
+    
+    
+    
+    <category term="山不厌高" scheme="http://example.com/categories/%E5%B1%B1%E4%B8%8D%E5%8E%8C%E9%AB%98/"/>
+    
+    <category term="笔记" scheme="http://example.com/categories/%E5%B1%B1%E4%B8%8D%E5%8E%8C%E9%AB%98/%E7%AC%94%E8%AE%B0/"/>
+    
+    
+    <category term="Redis" scheme="http://example.com/tags/Redis/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Redis 设计与实现(10-AOF持久化)</title>
+    <link href="http://example.com/Redis%20%E8%AE%BE%E8%AE%A1%E4%B8%8E%E5%AE%9E%E7%8E%B0(10-AOF%E6%8C%81%E4%B9%85%E5%8C%96).html"/>
+    <id>http://example.com/Redis%20%E8%AE%BE%E8%AE%A1%E4%B8%8E%E5%AE%9E%E7%8E%B0(10-AOF%E6%8C%81%E4%B9%85%E5%8C%96).html</id>
+    <published>2021-11-14T07:40:00.000Z</published>
+    <updated>2022-03-31T06:43:05.835Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;p&gt;与RDB持久化通过保存数据库中的键值对来记录数据库状态不同，AOF持久化是通过保存Redis服务器所执行的写命令来记录数据库状态的。&lt;/p&gt;
+&lt;p&gt;AOF持久化保存数据库状态的方法是将服务器执行的SET、SADD、RPUSH三个命令保存到AOF文件中。被写入AOF文件的所有</summary>
+        
+      
+    
+    
+    
+    <category term="山不厌高" scheme="http://example.com/categories/%E5%B1%B1%E4%B8%8D%E5%8E%8C%E9%AB%98/"/>
+    
+    <category term="笔记" scheme="http://example.com/categories/%E5%B1%B1%E4%B8%8D%E5%8E%8C%E9%AB%98/%E7%AC%94%E8%AE%B0/"/>
+    
+    
+    <category term="Redis" scheme="http://example.com/tags/Redis/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Redis 设计与实现(9-RDB持久化)</title>
+    <link href="http://example.com/Redis%20%E8%AE%BE%E8%AE%A1%E4%B8%8E%E5%AE%9E%E7%8E%B0(9-RDB%E6%8C%81%E4%B9%85%E5%8C%96).html"/>
+    <id>http://example.com/Redis%20%E8%AE%BE%E8%AE%A1%E4%B8%8E%E5%AE%9E%E7%8E%B0(9-RDB%E6%8C%81%E4%B9%85%E5%8C%96).html</id>
+    <published>2021-11-11T05:40:00.000Z</published>
+    <updated>2022-03-31T06:42:46.851Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;h3 id=&quot;目的&quot;&gt;&lt;a href=&quot;#目的&quot; class=&quot;headerlink&quot;</summary>
+        
+      
+    
+    
+    
+    <category term="山不厌高" scheme="http://example.com/categories/%E5%B1%B1%E4%B8%8D%E5%8E%8C%E9%AB%98/"/>
+    
+    <category term="笔记" scheme="http://example.com/categories/%E5%B1%B1%E4%B8%8D%E5%8E%8C%E9%AB%98/%E7%AC%94%E8%AE%B0/"/>
+    
+    
+    <category term="Redis" scheme="http://example.com/tags/Redis/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Redis 设计与实现(8-数据库)</title>
+    <link href="http://example.com/Redis%20%E8%AE%BE%E8%AE%A1%E4%B8%8E%E5%AE%9E%E7%8E%B0(8-%E6%95%B0%E6%8D%AE%E5%BA%93).html"/>
+    <id>http://example.com/Redis%20%E8%AE%BE%E8%AE%A1%E4%B8%8E%E5%AE%9E%E7%8E%B0(8-%E6%95%B0%E6%8D%AE%E5%BA%93).html</id>
+    <published>2021-11-09T09:40:00.000Z</published>
+    <updated>2022-03-31T06:42:10.010Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;h3 id=&quot;底层结构&quot;&gt;&lt;a href=&quot;#底层结构&quot; class=&quot;headerlink&quot;</summary>
+        
+      
+    
+    
+    
+    <category term="山不厌高" scheme="http://example.com/categories/%E5%B1%B1%E4%B8%8D%E5%8E%8C%E9%AB%98/"/>
+    
+    <category term="笔记" scheme="http://example.com/categories/%E5%B1%B1%E4%B8%8D%E5%8E%8C%E9%AB%98/%E7%AC%94%E8%AE%B0/"/>
+    
+    
+    <category term="Redis" scheme="http://example.com/tags/Redis/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Redis 设计与实现(7-对象)</title>
+    <link href="http://example.com/Redis%20%E8%AE%BE%E8%AE%A1%E4%B8%8E%E5%AE%9E%E7%8E%B0(7-%E5%AF%B9%E8%B1%A1).html"/>
+    <id>http://example.com/Redis%20%E8%AE%BE%E8%AE%A1%E4%B8%8E%E5%AE%9E%E7%8E%B0(7-%E5%AF%B9%E8%B1%A1).html</id>
+    <published>2021-11-07T15:00:00.000Z</published>
+    <updated>2022-03-31T06:29:44.448Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;meta name=&quot;referrer&quot;</summary>
+        
+      
+    
+    
+    
+    <category term="山不厌高" scheme="http://example.com/categories/%E5%B1%B1%E4%B8%8D%E5%8E%8C%E9%AB%98/"/>
+    
+    <category term="笔记" scheme="http://example.com/categories/%E5%B1%B1%E4%B8%8D%E5%8E%8C%E9%AB%98/%E7%AC%94%E8%AE%B0/"/>
+    
+    
+    <category term="Redis" scheme="http://example.com/tags/Redis/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Redis 设计与实现(6-压缩列表)</title>
+    <link href="http://example.com/Redis%20%E8%AE%BE%E8%AE%A1%E4%B8%8E%E5%AE%9E%E7%8E%B0(6-%E5%8E%8B%E7%BC%A9%E5%88%97%E8%A1%A8).html"/>
+    <id>http://example.com/Redis%20%E8%AE%BE%E8%AE%A1%E4%B8%8E%E5%AE%9E%E7%8E%B0(6-%E5%8E%8B%E7%BC%A9%E5%88%97%E8%A1%A8).html</id>
+    <published>2021-11-07T09:40:43.000Z</published>
+    <updated>2022-03-31T06:24:19.374Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;p&gt;压缩列表（ziplist）是列表键和哈希键的底层实现之一。当一个列表键只包含少量列表项/当一个哈希键只包含少量键值对，并且每个列表项/每个键值对的键和值 要么就是小整数值，要么就是长度比较短的字符串，那么Redis就会使用压缩列表来做列表键的底层实现。&lt;/p&gt;
+&lt;h3</summary>
+        
+      
+    
+    
+    
+    <category term="山不厌高" scheme="http://example.com/categories/%E5%B1%B1%E4%B8%8D%E5%8E%8C%E9%AB%98/"/>
+    
+    <category term="笔记" scheme="http://example.com/categories/%E5%B1%B1%E4%B8%8D%E5%8E%8C%E9%AB%98/%E7%AC%94%E8%AE%B0/"/>
+    
+    
+    <category term="Redis" scheme="http://example.com/tags/Redis/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Redis设计与实现(5-整数集合)</title>
+    <link href="http://example.com/Redis%20%E8%AE%BE%E8%AE%A1%E4%B8%8E%E5%AE%9E%E7%8E%B0(5-%E6%95%B4%E6%95%B0%E9%9B%86%E5%90%88).html"/>
+    <id>http://example.com/Redis%20%E8%AE%BE%E8%AE%A1%E4%B8%8E%E5%AE%9E%E7%8E%B0(5-%E6%95%B4%E6%95%B0%E9%9B%86%E5%90%88).html</id>
+    <published>2021-07-04T09:03:43.000Z</published>
+    <updated>2022-03-28T06:49:23.509Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;p&gt;整数集合（intset）是集合键的底层实现之一，当一个集合只包含整数值元素，并且这个集合的元素数量不多时，Redis就会使用整数集合作为集合键的底层实现。&lt;/p&gt;
+&lt;h3 id=&quot;整数集合的实现&quot;&gt;&lt;a href=&quot;#整数集合的实现&quot; class=&quot;headerlink&quot;</summary>
+        
+      
+    
+    
+    
+    <category term="山不厌高" scheme="http://example.com/categories/%E5%B1%B1%E4%B8%8D%E5%8E%8C%E9%AB%98/"/>
+    
+    <category term="笔记" scheme="http://example.com/categories/%E5%B1%B1%E4%B8%8D%E5%8E%8C%E9%AB%98/%E7%AC%94%E8%AE%B0/"/>
+    
+    
+    <category term="Redis" scheme="http://example.com/tags/Redis/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Redis设计与实现(4-跳跃表)</title>
+    <link href="http://example.com/Redis%20%E8%AE%BE%E8%AE%A1%E4%B8%8E%E5%AE%9E%E7%8E%B0(4-%E8%B7%B3%E8%B7%83%E8%A1%A8).html"/>
+    <id>http://example.com/Redis%20%E8%AE%BE%E8%AE%A1%E4%B8%8E%E5%AE%9E%E7%8E%B0(4-%E8%B7%B3%E8%B7%83%E8%A1%A8).html</id>
+    <published>2021-04-26T13:03:43.000Z</published>
+    <updated>2022-03-31T06:16:09.207Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;p&gt;跳跃表（skiplist）是一种有序数据结构，它通过在每个节点中维持多个指向其他节点的指针，从而达到快速访问节点的目的。&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;跳跃表支持平均O（logN）、最坏O（N）复杂度的节点查找，还可以通过顺序性操作来批量处理节点。&lt;/p&gt;
+&lt;/b</summary>
+        
+      
+    
+    
+    
+    <category term="山不厌高" scheme="http://example.com/categories/%E5%B1%B1%E4%B8%8D%E5%8E%8C%E9%AB%98/"/>
+    
+    <category term="笔记" scheme="http://example.com/categories/%E5%B1%B1%E4%B8%8D%E5%8E%8C%E9%AB%98/%E7%AC%94%E8%AE%B0/"/>
+    
+    
+    <category term="Redis" scheme="http://example.com/tags/Redis/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>动态规划问题思维导图</title>
+    <link href="http://example.com/%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92%E9%97%AE%E9%A2%98%E6%80%9D%E7%BB%B4%E5%AF%BC%E5%9B%BE.html"/>
+    <id>http://example.com/%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92%E9%97%AE%E9%A2%98%E6%80%9D%E7%BB%B4%E5%AF%BC%E5%9B%BE.html</id>
+    <published>2020-12-13T02:33:57.113Z</published>
+    <updated>2022-03-31T06:46:32.835Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;p&gt;附图一张&lt;br&gt;&lt;img</summary>
+        
+      
+    
+    
+    
+    <category term="山不厌高" scheme="http://example.com/categories/%E5%B1%B1%E4%B8%8D%E5%8E%8C%E9%AB%98/"/>
+    
+    <category term="笔记" scheme="http://example.com/categories/%E5%B1%B1%E4%B8%8D%E5%8E%8C%E9%AB%98/%E7%AC%94%E8%AE%B0/"/>
+    
+    
+    <category term="算法" scheme="http://example.com/tags/%E7%AE%97%E6%B3%95/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Redis 设计与实现(3-字典)</title>
+    <link href="http://example.com/Redis%20%E8%AE%BE%E8%AE%A1%E4%B8%8E%E5%AE%9E%E7%8E%B0(3-%E5%AD%97%E5%85%B8).html"/>
+    <id>http://example.com/Redis%20%E8%AE%BE%E8%AE%A1%E4%B8%8E%E5%AE%9E%E7%8E%B0(3-%E5%AD%97%E5%85%B8).html</id>
+    <published>2020-12-13T02:33:57.103Z</published>
+    <updated>2022-03-31T07:58:50.923Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;p&gt;字典：用于保存键值对（key-value pair）的抽象数据结构。&lt;/p&gt;
+&lt;p&gt;字典是Redis的数据库的底层实现，也是哈希的底层实现之一，但由于C语言没有字典这一数据结构，所以Redis自己构建了该数据结构。&lt;/p&gt;
+&lt;h3 id=&quot;字典的实现&quot;&gt;&lt;a</summary>
+        
+      
+    
+    
+    
+    <category term="山不厌高" scheme="http://example.com/categories/%E5%B1%B1%E4%B8%8D%E5%8E%8C%E9%AB%98/"/>
+    
+    <category term="笔记" scheme="http://example.com/categories/%E5%B1%B1%E4%B8%8D%E5%8E%8C%E9%AB%98/%E7%AC%94%E8%AE%B0/"/>
+    
+    
+    <category term="Redis" scheme="http://example.com/tags/Redis/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Redis设计与实现（2-链表）</title>
+    <link href="http://example.com/Redis%20%E8%AE%BE%E8%AE%A1%E4%B8%8E%E5%AE%9E%E7%8E%B0(2-%E9%93%BE%E8%A1%A8).html"/>
+    <id>http://example.com/Redis%20%E8%AE%BE%E8%AE%A1%E4%B8%8E%E5%AE%9E%E7%8E%B0(2-%E9%93%BE%E8%A1%A8).html</id>
+    <published>2020-12-13T02:33:57.098Z</published>
+    <updated>2022-03-28T06:49:10.043Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;p&gt;链表是Redis底层用非常广泛的数据结构。使用范围包含但不限于：列表键，发布与订阅、慢查询、监视器、客户端状态信息等&lt;/p&gt;
+&lt;h3 id=&quot;链表节点实现&quot;&gt;&lt;a href=&quot;#链表节点实现&quot; class=&quot;headerlink&quot;</summary>
+        
+      
+    
+    
+    
+    <category term="山不厌高" scheme="http://example.com/categories/%E5%B1%B1%E4%B8%8D%E5%8E%8C%E9%AB%98/"/>
+    
+    <category term="笔记" scheme="http://example.com/categories/%E5%B1%B1%E4%B8%8D%E5%8E%8C%E9%AB%98/%E7%AC%94%E8%AE%B0/"/>
+    
+    
+    <category term="Redis" scheme="http://example.com/tags/Redis/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Redis设计与实现（1-字符串）</title>
+    <link href="http://example.com/Redis%20%E8%AE%BE%E8%AE%A1%E4%B8%8E%E5%AE%9E%E7%8E%B0(1-%E5%AD%97%E7%AC%A6%E4%B8%B2).html"/>
+    <id>http://example.com/Redis%20%E8%AE%BE%E8%AE%A1%E4%B8%8E%E5%AE%9E%E7%8E%B0(1-%E5%AD%97%E7%AC%A6%E4%B8%B2).html</id>
+    <published>2020-12-13T02:33:57.093Z</published>
+    <updated>2022-03-31T06:07:04.705Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;p&gt;每个sds.h/sdshdr结构表示一个SDS值：&lt;/p&gt;
+&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span</summary>
+        
+      
+    
+    
+    
+    <category term="山不厌高" scheme="http://example.com/categories/%E5%B1%B1%E4%B8%8D%E5%8E%8C%E9%AB%98/"/>
+    
+    <category term="笔记" scheme="http://example.com/categories/%E5%B1%B1%E4%B8%8D%E5%8E%8C%E9%AB%98/%E7%AC%94%E8%AE%B0/"/>
+    
+    
+    <category term="Redis" scheme="http://example.com/tags/Redis/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>CentOS7 安装Redis6.0</title>
+    <link href="http://example.com/CentOS7-%E5%AE%89%E8%A3%85Redis6.0.html"/>
+    <id>http://example.com/CentOS7-%E5%AE%89%E8%A3%85Redis6.0.html</id>
+    <published>2020-12-13T02:33:57.084Z</published>
+    <updated>2021-07-25T09:25:24.238Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;p&gt;今天给一台崭新的服务器(CentOS</summary>
+        
+      
+    
+    
+    
+    <category term="Redis" scheme="http://example.com/categories/Redis/"/>
+    
+    
+    <category term="Redis" scheme="http://example.com/tags/Redis/"/>
+    
+    <category term="教程" scheme="http://example.com/tags/%E6%95%99%E7%A8%8B/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Redis学习笔记 (1)</title>
+    <link href="http://example.com/Redis%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-(1).html"/>
+    <id>http://example.com/Redis%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-(1).html</id>
+    <published>2020-05-08T15:01:33.000Z</published>
+    <updated>2022-03-28T06:50:46.020Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;p&gt;第一次接触Redis，已经记不清是什么时候了，那时候对它的唯一印象就是它是数据库，还能做缓存。对于它的底层，数据结构什么的一概不知，更不用说什么缓存，消息通知什么的了。前段时间又系统的看了一遍Redis视频教程和书本教程，在此做个记录。毕竟好记性不如烂笔头。此为开篇。&lt;/p</summary>
+        
+      
+    
+    
+    
+    <category term="山不厌高" scheme="http://example.com/categories/%E5%B1%B1%E4%B8%8D%E5%8E%8C%E9%AB%98/"/>
+    
+    <category term="笔记" scheme="http://example.com/categories/%E5%B1%B1%E4%B8%8D%E5%8E%8C%E9%AB%98/%E7%AC%94%E8%AE%B0/"/>
+    
+    
+    <category term="Redis" scheme="http://example.com/tags/Redis/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Python Supervisor使用教程</title>
+    <link href="http://example.com/%E4%B8%87%E8%83%BD%E7%9A%84supervisor%EF%BC%8C%E6%89%98%E8%B5%B7%E4%BA%86%E6%97%A0%E6%95%B0%E4%B8%AA%E5%90%8E%E5%8F%B0%E7%A8%8B%E5%BA%8F.html"/>
+    <id>http://example.com/%E4%B8%87%E8%83%BD%E7%9A%84supervisor%EF%BC%8C%E6%89%98%E8%B5%B7%E4%BA%86%E6%97%A0%E6%95%B0%E4%B8%AA%E5%90%8E%E5%8F%B0%E7%A8%8B%E5%BA%8F.html</id>
+    <published>2020-05-08T05:45:33.000Z</published>
+    <updated>2020-05-08T15:05:51.856Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;h1 id=&quot;supervisor简介&quot;&gt;&lt;a href=&quot;#supervisor简介&quot; class=&quot;headerlink&quot; title=&quot;supervisor简介&quot;&gt;&lt;/a&gt;supervisor简介&lt;/h1&gt;&lt;blockquote&gt;
+&lt;p&gt;Supervisor is a</summary>
+        
+      
+    
+    
+    
+    <category term="教程" scheme="http://example.com/categories/%E6%95%99%E7%A8%8B/"/>
+    
+    
+    <category term="教程" scheme="http://example.com/tags/%E6%95%99%E7%A8%8B/"/>
+    
+    <category term="python" scheme="http://example.com/tags/python/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>重拾Hexo主题博客</title>
+    <link href="http://example.com/%E9%87%8D%E6%8B%BEHexo.html"/>
+    <id>http://example.com/%E9%87%8D%E6%8B%BEHexo.html</id>
+    <published>2020-04-20T07:45:33.000Z</published>
+    <updated>2022-03-31T06:49:55.119Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;p&gt;去年6月份，接触到了hexo静态博客，一时兴起之下，就跟着教程搭了一个。但只是搭了一个，之后就再也没用过了。一个月之前我便在思考重试起我的博客网站，但依然没想好是使用前后端分离，还是直接使用模板语言，亦或是hexo。一个月后，终于决定还是使用hexo搭建，一时多熟悉一下he</summary>
+        
+      
+    
+    
+    
+    <category term="随笔" scheme="http://example.com/categories/%E9%9A%8F%E7%AC%94/"/>
+    
+    
+    <category term="教程" scheme="http://example.com/tags/%E6%95%99%E7%A8%8B/"/>
+    
+  </entry>
+  
+</feed>
