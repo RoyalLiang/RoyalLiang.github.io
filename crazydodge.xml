@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
   <title>悟道程序员</title>
-  <icon>http://example.com/icon.png</icon>
+  <icon>https://www.crazydodge.com/icon.png</icon>
   <subtitle>微笑向暖，安之若素。</subtitle>
-  <link href="http://example.com/crazydodge.xml" rel="self"/>
+  <link href="https://www.crazydodge.com/crazydodge.xml" rel="self"/>
   
-  <link href="http://example.com/"/>
+  <link href="https://www.crazydodge.com/"/>
   <updated>2022-04-06T06:39:07.572Z</updated>
-  <id>http://example.com/</id>
+  <id>https://www.crazydodge.com/</id>
   
   <author>
     <name>RoyalLiang</name>
@@ -18,8 +18,8 @@
   
   <entry>
     <title>深入 dict 机制，转化类变量</title>
-    <link href="http://example.com/post/828dc49d.html"/>
-    <id>http://example.com/post/828dc49d.html</id>
+    <link href="https://www.crazydodge.com/post/828dc49d.html"/>
+    <id>https://www.crazydodge.com/post/828dc49d.html</id>
     <published>2022-04-03T16:00:00.000Z</published>
     <updated>2022-04-06T06:39:07.572Z</updated>
     
@@ -36,17 +36,17 @@
     
     
     
-    <category term="山不厌高" scheme="http://example.com/categories/%E5%B1%B1%E4%B8%8D%E5%8E%8C%E9%AB%98/"/>
+    <category term="山不厌高" scheme="https://www.crazydodge.com/categories/%E5%B1%B1%E4%B8%8D%E5%8E%8C%E9%AB%98/"/>
     
     
-    <category term="Python" scheme="http://example.com/tags/Python/"/>
+    <category term="Python" scheme="https://www.crazydodge.com/tags/Python/"/>
     
   </entry>
   
   <entry>
     <title>自建博客，关于建站方式的一些事儿</title>
-    <link href="http://example.com/post/c6eb7597.html"/>
-    <id>http://example.com/post/c6eb7597.html</id>
+    <link href="https://www.crazydodge.com/post/c6eb7597.html"/>
+    <id>https://www.crazydodge.com/post/c6eb7597.html</id>
     <published>2022-03-24T16:00:00.000Z</published>
     <updated>2022-04-06T06:39:07.573Z</updated>
     
@@ -61,17 +61,17 @@
     
     
     
-    <category term="随笔" scheme="http://example.com/categories/%E9%9A%8F%E7%AC%94/"/>
+    <category term="随笔" scheme="https://www.crazydodge.com/categories/%E9%9A%8F%E7%AC%94/"/>
     
     
-    <category term="王婆卖瓜" scheme="http://example.com/tags/%E7%8E%8B%E5%A9%86%E5%8D%96%E7%93%9C/"/>
+    <category term="王婆卖瓜" scheme="https://www.crazydodge.com/tags/%E7%8E%8B%E5%A9%86%E5%8D%96%E7%93%9C/"/>
     
   </entry>
   
   <entry>
     <title>Redis 设计与实现(11-事件)</title>
-    <link href="http://example.com/post/891b59ea.html"/>
-    <id>http://example.com/post/891b59ea.html</id>
+    <link href="https://www.crazydodge.com/post/891b59ea.html"/>
+    <id>https://www.crazydodge.com/post/891b59ea.html</id>
     <published>2021-11-20T11:40:00.000Z</published>
     <updated>2022-04-06T06:39:07.561Z</updated>
     
@@ -88,19 +88,19 @@
     
     
     
-    <category term="山不厌高" scheme="http://example.com/categories/%E5%B1%B1%E4%B8%8D%E5%8E%8C%E9%AB%98/"/>
+    <category term="山不厌高" scheme="https://www.crazydodge.com/categories/%E5%B1%B1%E4%B8%8D%E5%8E%8C%E9%AB%98/"/>
     
-    <category term="笔记" scheme="http://example.com/categories/%E5%B1%B1%E4%B8%8D%E5%8E%8C%E9%AB%98/%E7%AC%94%E8%AE%B0/"/>
+    <category term="笔记" scheme="https://www.crazydodge.com/categories/%E5%B1%B1%E4%B8%8D%E5%8E%8C%E9%AB%98/%E7%AC%94%E8%AE%B0/"/>
     
     
-    <category term="Redis" scheme="http://example.com/tags/Redis/"/>
+    <category term="Redis" scheme="https://www.crazydodge.com/tags/Redis/"/>
     
   </entry>
   
   <entry>
     <title>Redis 设计与实现(10-AOF持久化)</title>
-    <link href="http://example.com/post/1fb2784e.html"/>
-    <id>http://example.com/post/1fb2784e.html</id>
+    <link href="https://www.crazydodge.com/post/1fb2784e.html"/>
+    <id>https://www.crazydodge.com/post/1fb2784e.html</id>
     <published>2021-11-14T07:40:00.000Z</published>
     <updated>2022-04-06T06:39:07.560Z</updated>
     
@@ -116,19 +116,19 @@
     
     
     
-    <category term="山不厌高" scheme="http://example.com/categories/%E5%B1%B1%E4%B8%8D%E5%8E%8C%E9%AB%98/"/>
+    <category term="山不厌高" scheme="https://www.crazydodge.com/categories/%E5%B1%B1%E4%B8%8D%E5%8E%8C%E9%AB%98/"/>
     
-    <category term="笔记" scheme="http://example.com/categories/%E5%B1%B1%E4%B8%8D%E5%8E%8C%E9%AB%98/%E7%AC%94%E8%AE%B0/"/>
+    <category term="笔记" scheme="https://www.crazydodge.com/categories/%E5%B1%B1%E4%B8%8D%E5%8E%8C%E9%AB%98/%E7%AC%94%E8%AE%B0/"/>
     
     
-    <category term="Redis" scheme="http://example.com/tags/Redis/"/>
+    <category term="Redis" scheme="https://www.crazydodge.com/tags/Redis/"/>
     
   </entry>
   
   <entry>
     <title>Redis 设计与实现(9-RDB持久化)</title>
-    <link href="http://example.com/post/d66f2976.html"/>
-    <id>http://example.com/post/d66f2976.html</id>
+    <link href="https://www.crazydodge.com/post/d66f2976.html"/>
+    <id>https://www.crazydodge.com/post/d66f2976.html</id>
     <published>2021-11-11T05:40:00.000Z</published>
     <updated>2022-04-06T06:39:07.568Z</updated>
     
@@ -143,19 +143,19 @@
     
     
     
-    <category term="山不厌高" scheme="http://example.com/categories/%E5%B1%B1%E4%B8%8D%E5%8E%8C%E9%AB%98/"/>
+    <category term="山不厌高" scheme="https://www.crazydodge.com/categories/%E5%B1%B1%E4%B8%8D%E5%8E%8C%E9%AB%98/"/>
     
-    <category term="笔记" scheme="http://example.com/categories/%E5%B1%B1%E4%B8%8D%E5%8E%8C%E9%AB%98/%E7%AC%94%E8%AE%B0/"/>
+    <category term="笔记" scheme="https://www.crazydodge.com/categories/%E5%B1%B1%E4%B8%8D%E5%8E%8C%E9%AB%98/%E7%AC%94%E8%AE%B0/"/>
     
     
-    <category term="Redis" scheme="http://example.com/tags/Redis/"/>
+    <category term="Redis" scheme="https://www.crazydodge.com/tags/Redis/"/>
     
   </entry>
   
   <entry>
     <title>Redis 设计与实现(8-数据库)</title>
-    <link href="http://example.com/post/6b54b752.html"/>
-    <id>http://example.com/post/6b54b752.html</id>
+    <link href="https://www.crazydodge.com/post/6b54b752.html"/>
+    <id>https://www.crazydodge.com/post/6b54b752.html</id>
     <published>2021-11-09T09:40:00.000Z</published>
     <updated>2022-04-06T06:39:07.568Z</updated>
     
@@ -170,19 +170,19 @@
     
     
     
-    <category term="山不厌高" scheme="http://example.com/categories/%E5%B1%B1%E4%B8%8D%E5%8E%8C%E9%AB%98/"/>
+    <category term="山不厌高" scheme="https://www.crazydodge.com/categories/%E5%B1%B1%E4%B8%8D%E5%8E%8C%E9%AB%98/"/>
     
-    <category term="笔记" scheme="http://example.com/categories/%E5%B1%B1%E4%B8%8D%E5%8E%8C%E9%AB%98/%E7%AC%94%E8%AE%B0/"/>
+    <category term="笔记" scheme="https://www.crazydodge.com/categories/%E5%B1%B1%E4%B8%8D%E5%8E%8C%E9%AB%98/%E7%AC%94%E8%AE%B0/"/>
     
     
-    <category term="Redis" scheme="http://example.com/tags/Redis/"/>
+    <category term="Redis" scheme="https://www.crazydodge.com/tags/Redis/"/>
     
   </entry>
   
   <entry>
     <title>Redis 设计与实现(7-对象)</title>
-    <link href="http://example.com/post/d1a2b653.html"/>
-    <id>http://example.com/post/d1a2b653.html</id>
+    <link href="https://www.crazydodge.com/post/d1a2b653.html"/>
+    <id>https://www.crazydodge.com/post/d1a2b653.html</id>
     <published>2021-11-07T15:00:00.000Z</published>
     <updated>2022-04-06T06:39:07.567Z</updated>
     
@@ -197,19 +197,19 @@
     
     
     
-    <category term="山不厌高" scheme="http://example.com/categories/%E5%B1%B1%E4%B8%8D%E5%8E%8C%E9%AB%98/"/>
+    <category term="山不厌高" scheme="https://www.crazydodge.com/categories/%E5%B1%B1%E4%B8%8D%E5%8E%8C%E9%AB%98/"/>
     
-    <category term="笔记" scheme="http://example.com/categories/%E5%B1%B1%E4%B8%8D%E5%8E%8C%E9%AB%98/%E7%AC%94%E8%AE%B0/"/>
+    <category term="笔记" scheme="https://www.crazydodge.com/categories/%E5%B1%B1%E4%B8%8D%E5%8E%8C%E9%AB%98/%E7%AC%94%E8%AE%B0/"/>
     
     
-    <category term="Redis" scheme="http://example.com/tags/Redis/"/>
+    <category term="Redis" scheme="https://www.crazydodge.com/tags/Redis/"/>
     
   </entry>
   
   <entry>
     <title>Redis 设计与实现(6-压缩列表)</title>
-    <link href="http://example.com/post/23dbd94d.html"/>
-    <id>http://example.com/post/23dbd94d.html</id>
+    <link href="https://www.crazydodge.com/post/23dbd94d.html"/>
+    <id>https://www.crazydodge.com/post/23dbd94d.html</id>
     <published>2021-11-07T09:40:43.000Z</published>
     <updated>2022-04-06T06:39:07.565Z</updated>
     
@@ -224,19 +224,19 @@
     
     
     
-    <category term="山不厌高" scheme="http://example.com/categories/%E5%B1%B1%E4%B8%8D%E5%8E%8C%E9%AB%98/"/>
+    <category term="山不厌高" scheme="https://www.crazydodge.com/categories/%E5%B1%B1%E4%B8%8D%E5%8E%8C%E9%AB%98/"/>
     
-    <category term="笔记" scheme="http://example.com/categories/%E5%B1%B1%E4%B8%8D%E5%8E%8C%E9%AB%98/%E7%AC%94%E8%AE%B0/"/>
+    <category term="笔记" scheme="https://www.crazydodge.com/categories/%E5%B1%B1%E4%B8%8D%E5%8E%8C%E9%AB%98/%E7%AC%94%E8%AE%B0/"/>
     
     
-    <category term="Redis" scheme="http://example.com/tags/Redis/"/>
+    <category term="Redis" scheme="https://www.crazydodge.com/tags/Redis/"/>
     
   </entry>
   
   <entry>
     <title>Redis设计与实现(5-整数集合)</title>
-    <link href="http://example.com/post/48e3361d.html"/>
-    <id>http://example.com/post/48e3361d.html</id>
+    <link href="https://www.crazydodge.com/post/48e3361d.html"/>
+    <id>https://www.crazydodge.com/post/48e3361d.html</id>
     <published>2021-07-04T09:03:43.000Z</published>
     <updated>2022-04-06T06:39:07.564Z</updated>
     
@@ -252,19 +252,19 @@
     
     
     
-    <category term="山不厌高" scheme="http://example.com/categories/%E5%B1%B1%E4%B8%8D%E5%8E%8C%E9%AB%98/"/>
+    <category term="山不厌高" scheme="https://www.crazydodge.com/categories/%E5%B1%B1%E4%B8%8D%E5%8E%8C%E9%AB%98/"/>
     
-    <category term="笔记" scheme="http://example.com/categories/%E5%B1%B1%E4%B8%8D%E5%8E%8C%E9%AB%98/%E7%AC%94%E8%AE%B0/"/>
+    <category term="笔记" scheme="https://www.crazydodge.com/categories/%E5%B1%B1%E4%B8%8D%E5%8E%8C%E9%AB%98/%E7%AC%94%E8%AE%B0/"/>
     
     
-    <category term="Redis" scheme="http://example.com/tags/Redis/"/>
+    <category term="Redis" scheme="https://www.crazydodge.com/tags/Redis/"/>
     
   </entry>
   
   <entry>
     <title>Redis设计与实现(4-跳跃表)</title>
-    <link href="http://example.com/post/661ae741.html"/>
-    <id>http://example.com/post/661ae741.html</id>
+    <link href="https://www.crazydodge.com/post/661ae741.html"/>
+    <id>https://www.crazydodge.com/post/661ae741.html</id>
     <published>2021-04-26T13:03:43.000Z</published>
     <updated>2022-04-06T06:39:07.563Z</updated>
     
@@ -282,19 +282,19 @@
     
     
     
-    <category term="山不厌高" scheme="http://example.com/categories/%E5%B1%B1%E4%B8%8D%E5%8E%8C%E9%AB%98/"/>
+    <category term="山不厌高" scheme="https://www.crazydodge.com/categories/%E5%B1%B1%E4%B8%8D%E5%8E%8C%E9%AB%98/"/>
     
-    <category term="笔记" scheme="http://example.com/categories/%E5%B1%B1%E4%B8%8D%E5%8E%8C%E9%AB%98/%E7%AC%94%E8%AE%B0/"/>
+    <category term="笔记" scheme="https://www.crazydodge.com/categories/%E5%B1%B1%E4%B8%8D%E5%8E%8C%E9%AB%98/%E7%AC%94%E8%AE%B0/"/>
     
     
-    <category term="Redis" scheme="http://example.com/tags/Redis/"/>
+    <category term="Redis" scheme="https://www.crazydodge.com/tags/Redis/"/>
     
   </entry>
   
   <entry>
     <title>动态规划问题思维导图</title>
-    <link href="http://example.com/post/20af7554.html"/>
-    <id>http://example.com/post/20af7554.html</id>
+    <link href="https://www.crazydodge.com/post/20af7554.html"/>
+    <id>https://www.crazydodge.com/post/20af7554.html</id>
     <published>2020-12-13T02:33:57.113Z</published>
     <updated>2022-04-06T06:39:07.570Z</updated>
     
@@ -309,19 +309,19 @@
     
     
     
-    <category term="山不厌高" scheme="http://example.com/categories/%E5%B1%B1%E4%B8%8D%E5%8E%8C%E9%AB%98/"/>
+    <category term="山不厌高" scheme="https://www.crazydodge.com/categories/%E5%B1%B1%E4%B8%8D%E5%8E%8C%E9%AB%98/"/>
     
-    <category term="笔记" scheme="http://example.com/categories/%E5%B1%B1%E4%B8%8D%E5%8E%8C%E9%AB%98/%E7%AC%94%E8%AE%B0/"/>
+    <category term="笔记" scheme="https://www.crazydodge.com/categories/%E5%B1%B1%E4%B8%8D%E5%8E%8C%E9%AB%98/%E7%AC%94%E8%AE%B0/"/>
     
     
-    <category term="算法" scheme="http://example.com/tags/%E7%AE%97%E6%B3%95/"/>
+    <category term="算法" scheme="https://www.crazydodge.com/tags/%E7%AE%97%E6%B3%95/"/>
     
   </entry>
   
   <entry>
     <title>Redis 设计与实现(3-字典)</title>
-    <link href="http://example.com/post/f57febb8.html"/>
-    <id>http://example.com/post/f57febb8.html</id>
+    <link href="https://www.crazydodge.com/post/f57febb8.html"/>
+    <id>https://www.crazydodge.com/post/f57febb8.html</id>
     <published>2020-12-13T02:33:57.103Z</published>
     <updated>2022-04-06T06:39:07.562Z</updated>
     
@@ -338,19 +338,19 @@
     
     
     
-    <category term="山不厌高" scheme="http://example.com/categories/%E5%B1%B1%E4%B8%8D%E5%8E%8C%E9%AB%98/"/>
+    <category term="山不厌高" scheme="https://www.crazydodge.com/categories/%E5%B1%B1%E4%B8%8D%E5%8E%8C%E9%AB%98/"/>
     
-    <category term="笔记" scheme="http://example.com/categories/%E5%B1%B1%E4%B8%8D%E5%8E%8C%E9%AB%98/%E7%AC%94%E8%AE%B0/"/>
+    <category term="笔记" scheme="https://www.crazydodge.com/categories/%E5%B1%B1%E4%B8%8D%E5%8E%8C%E9%AB%98/%E7%AC%94%E8%AE%B0/"/>
     
     
-    <category term="Redis" scheme="http://example.com/tags/Redis/"/>
+    <category term="Redis" scheme="https://www.crazydodge.com/tags/Redis/"/>
     
   </entry>
   
   <entry>
     <title>Redis设计与实现（2-链表）</title>
-    <link href="http://example.com/post/717cfc9a.html"/>
-    <id>http://example.com/post/717cfc9a.html</id>
+    <link href="https://www.crazydodge.com/post/717cfc9a.html"/>
+    <id>https://www.crazydodge.com/post/717cfc9a.html</id>
     <published>2020-12-13T02:33:57.098Z</published>
     <updated>2022-04-06T06:39:07.561Z</updated>
     
@@ -366,19 +366,19 @@
     
     
     
-    <category term="山不厌高" scheme="http://example.com/categories/%E5%B1%B1%E4%B8%8D%E5%8E%8C%E9%AB%98/"/>
+    <category term="山不厌高" scheme="https://www.crazydodge.com/categories/%E5%B1%B1%E4%B8%8D%E5%8E%8C%E9%AB%98/"/>
     
-    <category term="笔记" scheme="http://example.com/categories/%E5%B1%B1%E4%B8%8D%E5%8E%8C%E9%AB%98/%E7%AC%94%E8%AE%B0/"/>
+    <category term="笔记" scheme="https://www.crazydodge.com/categories/%E5%B1%B1%E4%B8%8D%E5%8E%8C%E9%AB%98/%E7%AC%94%E8%AE%B0/"/>
     
     
-    <category term="Redis" scheme="http://example.com/tags/Redis/"/>
+    <category term="Redis" scheme="https://www.crazydodge.com/tags/Redis/"/>
     
   </entry>
   
   <entry>
     <title>Redis设计与实现（1-字符串）</title>
-    <link href="http://example.com/post/8c0492ea.html"/>
-    <id>http://example.com/post/8c0492ea.html</id>
+    <link href="https://www.crazydodge.com/post/8c0492ea.html"/>
+    <id>https://www.crazydodge.com/post/8c0492ea.html</id>
     <published>2020-12-13T02:33:57.093Z</published>
     <updated>2022-04-06T06:39:07.558Z</updated>
     
@@ -394,19 +394,19 @@
     
     
     
-    <category term="山不厌高" scheme="http://example.com/categories/%E5%B1%B1%E4%B8%8D%E5%8E%8C%E9%AB%98/"/>
+    <category term="山不厌高" scheme="https://www.crazydodge.com/categories/%E5%B1%B1%E4%B8%8D%E5%8E%8C%E9%AB%98/"/>
     
-    <category term="笔记" scheme="http://example.com/categories/%E5%B1%B1%E4%B8%8D%E5%8E%8C%E9%AB%98/%E7%AC%94%E8%AE%B0/"/>
+    <category term="笔记" scheme="https://www.crazydodge.com/categories/%E5%B1%B1%E4%B8%8D%E5%8E%8C%E9%AB%98/%E7%AC%94%E8%AE%B0/"/>
     
     
-    <category term="Redis" scheme="http://example.com/tags/Redis/"/>
+    <category term="Redis" scheme="https://www.crazydodge.com/tags/Redis/"/>
     
   </entry>
   
   <entry>
     <title>CentOS7 安装Redis6.0</title>
-    <link href="http://example.com/post/12a6d824.html"/>
-    <id>http://example.com/post/12a6d824.html</id>
+    <link href="https://www.crazydodge.com/post/12a6d824.html"/>
+    <id>https://www.crazydodge.com/post/12a6d824.html</id>
     <published>2020-12-13T02:33:57.084Z</published>
     <updated>2022-04-06T06:39:07.556Z</updated>
     
@@ -421,19 +421,19 @@
     
     
     
-    <category term="Redis" scheme="http://example.com/categories/Redis/"/>
+    <category term="Redis" scheme="https://www.crazydodge.com/categories/Redis/"/>
     
     
-    <category term="Redis" scheme="http://example.com/tags/Redis/"/>
+    <category term="Redis" scheme="https://www.crazydodge.com/tags/Redis/"/>
     
-    <category term="教程" scheme="http://example.com/tags/%E6%95%99%E7%A8%8B/"/>
+    <category term="教程" scheme="https://www.crazydodge.com/tags/%E6%95%99%E7%A8%8B/"/>
     
   </entry>
   
   <entry>
     <title>Redis学习笔记 (1)</title>
-    <link href="http://example.com/post/3c5692e6.html"/>
-    <id>http://example.com/post/3c5692e6.html</id>
+    <link href="https://www.crazydodge.com/post/3c5692e6.html"/>
+    <id>https://www.crazydodge.com/post/3c5692e6.html</id>
     <published>2020-05-08T15:01:33.000Z</published>
     <updated>2022-04-06T06:39:07.569Z</updated>
     
@@ -448,19 +448,19 @@
     
     
     
-    <category term="山不厌高" scheme="http://example.com/categories/%E5%B1%B1%E4%B8%8D%E5%8E%8C%E9%AB%98/"/>
+    <category term="山不厌高" scheme="https://www.crazydodge.com/categories/%E5%B1%B1%E4%B8%8D%E5%8E%8C%E9%AB%98/"/>
     
-    <category term="笔记" scheme="http://example.com/categories/%E5%B1%B1%E4%B8%8D%E5%8E%8C%E9%AB%98/%E7%AC%94%E8%AE%B0/"/>
+    <category term="笔记" scheme="https://www.crazydodge.com/categories/%E5%B1%B1%E4%B8%8D%E5%8E%8C%E9%AB%98/%E7%AC%94%E8%AE%B0/"/>
     
     
-    <category term="Redis" scheme="http://example.com/tags/Redis/"/>
+    <category term="Redis" scheme="https://www.crazydodge.com/tags/Redis/"/>
     
   </entry>
   
   <entry>
     <title>Python Supervisor使用教程</title>
-    <link href="http://example.com/post/c8593bbd.html"/>
-    <id>http://example.com/post/c8593bbd.html</id>
+    <link href="https://www.crazydodge.com/post/c8593bbd.html"/>
+    <id>https://www.crazydodge.com/post/c8593bbd.html</id>
     <published>2020-05-08T05:45:33.000Z</published>
     <updated>2022-04-06T06:39:07.571Z</updated>
     
@@ -476,19 +476,19 @@
     
     
     
-    <category term="教程" scheme="http://example.com/categories/%E6%95%99%E7%A8%8B/"/>
+    <category term="教程" scheme="https://www.crazydodge.com/categories/%E6%95%99%E7%A8%8B/"/>
     
     
-    <category term="教程" scheme="http://example.com/tags/%E6%95%99%E7%A8%8B/"/>
+    <category term="教程" scheme="https://www.crazydodge.com/tags/%E6%95%99%E7%A8%8B/"/>
     
-    <category term="python" scheme="http://example.com/tags/python/"/>
+    <category term="python" scheme="https://www.crazydodge.com/tags/python/"/>
     
   </entry>
   
   <entry>
     <title>重拾Hexo主题博客</title>
-    <link href="http://example.com/post/ac2cac82.html"/>
-    <id>http://example.com/post/ac2cac82.html</id>
+    <link href="https://www.crazydodge.com/post/ac2cac82.html"/>
+    <id>https://www.crazydodge.com/post/ac2cac82.html</id>
     <published>2020-04-20T07:45:33.000Z</published>
     <updated>2022-04-06T06:39:07.573Z</updated>
     
@@ -503,10 +503,10 @@
     
     
     
-    <category term="随笔" scheme="http://example.com/categories/%E9%9A%8F%E7%AC%94/"/>
+    <category term="随笔" scheme="https://www.crazydodge.com/categories/%E9%9A%8F%E7%AC%94/"/>
     
     
-    <category term="教程" scheme="http://example.com/tags/%E6%95%99%E7%A8%8B/"/>
+    <category term="教程" scheme="https://www.crazydodge.com/tags/%E6%95%99%E7%A8%8B/"/>
     
   </entry>
   
