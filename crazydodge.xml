@@ -6,7 +6,7 @@
   <link href="http://example.com/crazydodge.xml" rel="self"/>
   
   <link href="http://example.com/"/>
-  <updated>2022-04-04T13:09:49.329Z</updated>
+  <updated>2022-04-06T06:39:07.572Z</updated>
   <id>http://example.com/</id>
   
   <author>
@@ -18,10 +18,10 @@
   
   <entry>
     <title>深入 dict 机制，转化类变量</title>
-    <link href="http://example.com/post/828dc49d"/>
-    <id>http://example.com/post/828dc49d</id>
+    <link href="http://example.com/post/828dc49d.html"/>
+    <id>http://example.com/post/828dc49d.html</id>
     <published>2022-04-03T16:00:00.000Z</published>
-    <updated>2022-04-04T13:09:49.329Z</updated>
+    <updated>2022-04-06T06:39:07.572Z</updated>
     
     
       
@@ -45,10 +45,10 @@
   
   <entry>
     <title>自建博客，关于建站方式的一些事儿</title>
-    <link href="http://example.com/post/c6eb7597"/>
-    <id>http://example.com/post/c6eb7597</id>
+    <link href="http://example.com/post/c6eb7597.html"/>
+    <id>http://example.com/post/c6eb7597.html</id>
     <published>2022-03-24T16:00:00.000Z</published>
-    <updated>2022-03-31T06:04:45.082Z</updated>
+    <updated>2022-04-06T06:39:07.573Z</updated>
     
     
       
@@ -70,10 +70,10 @@
   
   <entry>
     <title>Redis 设计与实现(11-事件)</title>
-    <link href="http://example.com/post/891b59ea"/>
-    <id>http://example.com/post/891b59ea</id>
+    <link href="http://example.com/post/891b59ea.html"/>
+    <id>http://example.com/post/891b59ea.html</id>
     <published>2021-11-20T11:40:00.000Z</published>
-    <updated>2022-03-31T06:43:34.288Z</updated>
+    <updated>2022-04-06T06:39:07.561Z</updated>
     
     
       
@@ -99,10 +99,10 @@
   
   <entry>
     <title>Redis 设计与实现(10-AOF持久化)</title>
-    <link href="http://example.com/post/1fb2784e"/>
-    <id>http://example.com/post/1fb2784e</id>
+    <link href="http://example.com/post/1fb2784e.html"/>
+    <id>http://example.com/post/1fb2784e.html</id>
     <published>2021-11-14T07:40:00.000Z</published>
-    <updated>2022-03-31T06:43:05.835Z</updated>
+    <updated>2022-04-06T06:39:07.560Z</updated>
     
     
       
@@ -127,10 +127,10 @@
   
   <entry>
     <title>Redis 设计与实现(9-RDB持久化)</title>
-    <link href="http://example.com/post/d66f2976"/>
-    <id>http://example.com/post/d66f2976</id>
+    <link href="http://example.com/post/d66f2976.html"/>
+    <id>http://example.com/post/d66f2976.html</id>
     <published>2021-11-11T05:40:00.000Z</published>
-    <updated>2022-03-31T06:42:46.851Z</updated>
+    <updated>2022-04-06T06:39:07.568Z</updated>
     
     
       
@@ -154,10 +154,10 @@
   
   <entry>
     <title>Redis 设计与实现(8-数据库)</title>
-    <link href="http://example.com/post/6b54b752"/>
-    <id>http://example.com/post/6b54b752</id>
+    <link href="http://example.com/post/6b54b752.html"/>
+    <id>http://example.com/post/6b54b752.html</id>
     <published>2021-11-09T09:40:00.000Z</published>
-    <updated>2022-03-31T06:42:10.010Z</updated>
+    <updated>2022-04-06T06:39:07.568Z</updated>
     
     
       
@@ -181,10 +181,10 @@
   
   <entry>
     <title>Redis 设计与实现(7-对象)</title>
-    <link href="http://example.com/post/d1a2b653"/>
-    <id>http://example.com/post/d1a2b653</id>
+    <link href="http://example.com/post/d1a2b653.html"/>
+    <id>http://example.com/post/d1a2b653.html</id>
     <published>2021-11-07T15:00:00.000Z</published>
-    <updated>2022-03-31T06:29:44.448Z</updated>
+    <updated>2022-04-06T06:39:07.567Z</updated>
     
     
       
@@ -208,10 +208,10 @@
   
   <entry>
     <title>Redis 设计与实现(6-压缩列表)</title>
-    <link href="http://example.com/post/23dbd94d"/>
-    <id>http://example.com/post/23dbd94d</id>
+    <link href="http://example.com/post/23dbd94d.html"/>
+    <id>http://example.com/post/23dbd94d.html</id>
     <published>2021-11-07T09:40:43.000Z</published>
-    <updated>2022-03-31T06:24:19.374Z</updated>
+    <updated>2022-04-06T06:39:07.565Z</updated>
     
     
       
@@ -235,10 +235,10 @@
   
   <entry>
     <title>Redis设计与实现(5-整数集合)</title>
-    <link href="http://example.com/post/48e3361d"/>
-    <id>http://example.com/post/48e3361d</id>
+    <link href="http://example.com/post/48e3361d.html"/>
+    <id>http://example.com/post/48e3361d.html</id>
     <published>2021-07-04T09:03:43.000Z</published>
-    <updated>2022-03-28T06:49:23.509Z</updated>
+    <updated>2022-04-06T06:39:07.564Z</updated>
     
     
       
@@ -263,10 +263,10 @@
   
   <entry>
     <title>Redis设计与实现(4-跳跃表)</title>
-    <link href="http://example.com/post/661ae741"/>
-    <id>http://example.com/post/661ae741</id>
+    <link href="http://example.com/post/661ae741.html"/>
+    <id>http://example.com/post/661ae741.html</id>
     <published>2021-04-26T13:03:43.000Z</published>
-    <updated>2022-03-31T06:16:09.207Z</updated>
+    <updated>2022-04-06T06:39:07.563Z</updated>
     
     
       
@@ -293,10 +293,10 @@
   
   <entry>
     <title>动态规划问题思维导图</title>
-    <link href="http://example.com/post/20af7554"/>
-    <id>http://example.com/post/20af7554</id>
+    <link href="http://example.com/post/20af7554.html"/>
+    <id>http://example.com/post/20af7554.html</id>
     <published>2020-12-13T02:33:57.113Z</published>
-    <updated>2022-03-31T06:46:32.835Z</updated>
+    <updated>2022-04-06T06:39:07.570Z</updated>
     
     
       
@@ -320,10 +320,10 @@
   
   <entry>
     <title>Redis 设计与实现(3-字典)</title>
-    <link href="http://example.com/post/f57febb8"/>
-    <id>http://example.com/post/f57febb8</id>
+    <link href="http://example.com/post/f57febb8.html"/>
+    <id>http://example.com/post/f57febb8.html</id>
     <published>2020-12-13T02:33:57.103Z</published>
-    <updated>2022-03-31T07:58:50.923Z</updated>
+    <updated>2022-04-06T06:39:07.562Z</updated>
     
     
       
@@ -349,10 +349,10 @@
   
   <entry>
     <title>Redis设计与实现（2-链表）</title>
-    <link href="http://example.com/post/717cfc9a"/>
-    <id>http://example.com/post/717cfc9a</id>
+    <link href="http://example.com/post/717cfc9a.html"/>
+    <id>http://example.com/post/717cfc9a.html</id>
     <published>2020-12-13T02:33:57.098Z</published>
-    <updated>2022-03-28T06:49:10.043Z</updated>
+    <updated>2022-04-06T06:39:07.561Z</updated>
     
     
       
@@ -377,10 +377,10 @@
   
   <entry>
     <title>Redis设计与实现（1-字符串）</title>
-    <link href="http://example.com/post/8c0492ea"/>
-    <id>http://example.com/post/8c0492ea</id>
+    <link href="http://example.com/post/8c0492ea.html"/>
+    <id>http://example.com/post/8c0492ea.html</id>
     <published>2020-12-13T02:33:57.093Z</published>
-    <updated>2022-03-31T06:07:04.705Z</updated>
+    <updated>2022-04-06T06:39:07.558Z</updated>
     
     
       
@@ -405,10 +405,10 @@
   
   <entry>
     <title>CentOS7 安装Redis6.0</title>
-    <link href="http://example.com/post/12a6d824"/>
-    <id>http://example.com/post/12a6d824</id>
+    <link href="http://example.com/post/12a6d824.html"/>
+    <id>http://example.com/post/12a6d824.html</id>
     <published>2020-12-13T02:33:57.084Z</published>
-    <updated>2021-07-25T09:25:24.238Z</updated>
+    <updated>2022-04-06T06:39:07.556Z</updated>
     
     
       
@@ -432,10 +432,10 @@
   
   <entry>
     <title>Redis学习笔记 (1)</title>
-    <link href="http://example.com/post/3c5692e6"/>
-    <id>http://example.com/post/3c5692e6</id>
+    <link href="http://example.com/post/3c5692e6.html"/>
+    <id>http://example.com/post/3c5692e6.html</id>
     <published>2020-05-08T15:01:33.000Z</published>
-    <updated>2022-03-28T06:50:46.020Z</updated>
+    <updated>2022-04-06T06:39:07.569Z</updated>
     
     
       
@@ -459,10 +459,10 @@
   
   <entry>
     <title>Python Supervisor使用教程</title>
-    <link href="http://example.com/post/c8593bbd"/>
-    <id>http://example.com/post/c8593bbd</id>
+    <link href="http://example.com/post/c8593bbd.html"/>
+    <id>http://example.com/post/c8593bbd.html</id>
     <published>2020-05-08T05:45:33.000Z</published>
-    <updated>2020-05-08T15:05:51.856Z</updated>
+    <updated>2022-04-06T06:39:07.571Z</updated>
     
     
       
@@ -487,10 +487,10 @@
   
   <entry>
     <title>重拾Hexo主题博客</title>
-    <link href="http://example.com/post/ac2cac82"/>
-    <id>http://example.com/post/ac2cac82</id>
+    <link href="http://example.com/post/ac2cac82.html"/>
+    <id>http://example.com/post/ac2cac82.html</id>
     <published>2020-04-20T07:45:33.000Z</published>
-    <updated>2022-03-31T06:49:55.119Z</updated>
+    <updated>2022-04-06T06:39:07.573Z</updated>
     
     
       
