@@ -4,6 +4,141 @@
   
     
     <entry>
+      <title>动态规划问题思维导图</title>
+      <link href="/RoyalLiang.github.io/post/20af7554.html"/>
+      <url>/RoyalLiang.github.io/post/20af7554.html</url>
+      
+        <content type="html"><![CDATA[<p>附图一张<br><img src="https://cdn.notfound.icu/hexo/dongtai.png"></p>]]></content>
+      
+      
+      <categories>
+          
+          <category> 山不厌高 </category>
+          
+          <category> 笔记 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> 算法 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>Redis设计与实现（1-字符串）</title>
+      <link href="/RoyalLiang.github.io/post/8c0492ea.html"/>
+      <url>/RoyalLiang.github.io/post/8c0492ea.html</url>
+      
+        <content type="html"><![CDATA[<p>每个sds.h&#x2F;sdshdr结构表示一个SDS值：</p><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">struct sdshdr&#123;</span><br><span class="line">    //记录buf数组重已使用字节的数量，等于SDS所保存字符串的长度</span><br><span class="line">    int len;</span><br><span class="line">    //记录buf数组中未使用字节的数量</span><br><span class="line">    int free;</span><br><span class="line">    //字节数组，用来保存字符串</span><br><span class="line">    char buf[];</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><blockquote><p>free属性的值为0，表示这个SDS没有分配任何未使用空间。</p><p>len属性的值为5，表示这个SDS保存了一个五字节长的字符串。</p><p>buf属性是一个char类型的数组，最后一个字节保存空字符’\0’。</p><p>SDS遵循C字符串以空字符结尾的惯例，保存空字符的1字节空间不计算在SDS的len属性里面。</p></blockquote><p>示例：</p><p><img src="https://cdn.notfound.icu/hexo/sds.png"></p><p><strong>SDS遵循C字符串以空字符结尾的惯例，保存空字符的1字节空间不计算在SDS的len属性里面。</strong></p><p><strong>通过 len 属性，</strong><code>SDS</code> 获取字符串长度时，其时间复杂度为 O(1) 。</p><p><strong>通过检查SDS的空间是否满足修改所需的要求，杜绝了缓冲区溢出的可能性。</strong></p><p>当 SDS API 需要对<code>SDS</code>进行修改时，API 会先检查<code>SDS</code>的空间是否满足修改所需的要求，如果不满足的话，API 会自动将<code>SDS</code>的空间扩展至执行修改所需的大小，然后才执行实际的修改操作。</p><p><strong>通过未使用空间解除了字符串长度和底层数组长度之间的关联，减少了内存重分配的次数。</strong></p><p>在<code>SDS</code>中，buf 数组的长度不一定就是字符数量加一，数组里面可以包含未使用的字节，而这些字节的数量就由<code>SDS</code>的 free 属性记录。</p><p><strong>通过未使用空间，</strong><strong><code>SDS</code>实现了空间预分配和惰性空间释放两种优化策略。</strong></p><p>空间预分配用于优化<code>SDS</code>的字符串增长操作：当<code>SDS</code>的 API 对一个SDS进行修改，并且需要对<code>SDS</code>进行空间扩展的时候，程序不仅会为<code>SDS</code>分配修改所必要的空间，还会为<code>SDS</code>分配额外的未使用空间。</p><p>惰性空间释放用于优化<code>SDS</code>的字符串缩短操作：当<code>SDS</code>的 API 需要缩短<code>SDS</code>保存的字符串时，程序并不立即使用内存重分配来回收缩短后多出来的字节，而是使用 free 属性将这些字节的数量记录起来，并等待将来使用。</p><p><strong><code>SDS</code> 是二进制安全的。</strong></p><p>所有 SDS API 都会以处理二进制的方式来处理<code>SDS</code>存放在 buf 数组里的数据。</p><h3 id="SDS-API"><a href="#SDS-API" class="headerlink" title="SDS API"></a>SDS API</h3><p><img src="https://cdn.notfound.icu/hexo/sdsapi.png"></p>]]></content>
+      
+      
+      <categories>
+          
+          <category> 山不厌高 </category>
+          
+          <category> 笔记 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> Redis </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>Redis设计与实现（2-链表）</title>
+      <link href="/RoyalLiang.github.io/post/717cfc9a.html"/>
+      <url>/RoyalLiang.github.io/post/717cfc9a.html</url>
+      
+        <content type="html"><![CDATA[<p>链表是Redis底层用非常广泛的数据结构。使用范围包含但不限于：列表键，发布与订阅、慢查询、监视器、客户端状态信息等</p><h3 id="链表节点实现"><a href="#链表节点实现" class="headerlink" title="链表节点实现"></a>链表节点实现</h3><p>每个链表节点使用一个adlist.h&#x2F;listNode结构来表示：</p><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">typedef struct listNode&#123;</span><br><span class="line">    //前置节点</span><br><span class="line">    struct listNode * prev;</span><br><span class="line">    //后置节点</span><br><span class="line">    struct listNode * next;</span><br><span class="line">    //节点值</span><br><span class="line">    void * value;</span><br><span class="line">&#125;listNode;</span><br></pre></td></tr></table></figure><p>使用多个listNode结构就可以组成链表，但使用adlist.h&#x2F;list来持有链表的话，操作起来会更方便：</p><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">typedef struct list&#123;</span><br><span class="line">    //头节点</span><br><span class="line">    listNode * head;</span><br><span class="line">    //尾节点</span><br><span class="line">    listNode * tail;</span><br><span class="line">    //链表节点数量</span><br><span class="line">    unsigned long len;</span><br><span class="line">    //节点值复制函数</span><br><span class="line">    void *(*dup)(void *ptr);</span><br><span class="line">    //节点值释放函数</span><br><span class="line">    void *(*free)(void *ptr);</span><br><span class="line">    //节点值比较函数</span><br><span class="line">    void *(*match)(void *ptr, void *key);</span><br><span class="line">&#125;list;</span><br></pre></td></tr></table></figure><blockquote><p>list结构为链表提供了表头指针head、表尾指针tail，以及链表长度计数器len，而dup、free和match成员则是用于实现多态链表所需的类型特定函数：</p></blockquote><ol><li>dup函数用于复制链表节点所保存的值；</li><li>free函数用于释放链表节点所保存的值；</li><li>match函数则用于对比链表节点所保存的值和另一个输入值是否相等。</li></ol><p>Redis链表特征：</p><ol><li>双端，每个节点都带有prev节点和next节点。</li><li>无环，表头节点的prev指针和表尾节点的next指针都指向NULL，对链表的访问以NULL为终点。</li><li>带表头指针和表尾指针。</li><li>带链表长度计数器，程序使用list结构的len属性来对list持有的链表节点进行计数。</li><li>多态，链表节点使用void*指针来保存节点值，并且可以通过list结构的dup、free、match三个属性为节点值设置类型特定函数，所以链表可以用于保存各种不同类型的值。</li></ol><h3 id="链表-API"><a href="#链表-API" class="headerlink" title="链表 API"></a>链表 API</h3><table><thead><tr><th>函数</th><th>作用</th><th>时间复杂度</th></tr></thead><tbody><tr><td>listSetDupMethod</td><td>将给定的函数设置成链表节点值复制函数</td><td>O(1)，通过链表的dup属性直接获得</td></tr><tr><td>listGetDupMethod</td><td>返回链表当前正在使用的节点值复制函数</td><td>O(1)</td></tr><tr><td>listSetFreeMethod</td><td>将给定的函数设置成链表节点值释放函数</td><td>O(1)</td></tr><tr><td>listGetFree</td><td>返回链表当前节点值释放函数</td><td>O(1)</td></tr><tr><td>listSetMatchMethod</td><td>将给定的函数设置成链表节点值对比函数</td><td>O(1)</td></tr><tr><td>listGetMatchMethod</td><td>返回链表当前节点值对比函数</td><td>O(1)</td></tr><tr><td>listLength</td><td>返回链表长度</td><td>O(1)</td></tr><tr><td>listFirst</td><td>返回链表头节点</td><td>O(1)</td></tr><tr><td>listLast</td><td>返回链表尾节点</td><td>O(1)</td></tr><tr><td>listPrevNode</td><td>返回给定节点的前置节点</td><td>O(1)</td></tr><tr><td>listNextNode</td><td>返回给定节点的后置节点</td><td>O(1)</td></tr><tr><td>listNodeValue</td><td>返回给定节点当前值</td><td>O(1)</td></tr><tr><td>listCreate</td><td>创建不包含任何值的空链表</td><td>O(1)</td></tr><tr><td>listAddNodeHead</td><td>将给定值的新节点添加到表头</td><td>O(1)</td></tr><tr><td>listAddNodeTail</td><td>将给定值的新节点添加到表尾</td><td>O(1)</td></tr><tr><td>listInsertNode</td><td>将给定值的新节点插入到链表指定位置</td><td>O(1)</td></tr><tr><td>listSearchKey</td><td>查找并返回链表中给定值的节点</td><td>O(n)</td></tr><tr><td>listIndex</td><td>返回链表给定索引的节点</td><td>O(n)</td></tr><tr><td>listDelNode</td><td>删除链表给定节点</td><td>O(n)</td></tr><tr><td>listRotate</td><td>将表尾节点弹出并设置成新的表头节点</td><td>O(1)</td></tr><tr><td>listDup</td><td>添加给定链表副本</td><td>O(n)</td></tr><tr><td>listRelease</td><td>释放给定链表</td><td>O(n)</td></tr></tbody></table><h3 id="链表总结"><a href="#链表总结" class="headerlink" title="链表总结"></a>链表总结</h3><ol><li>链表被广泛用于实现Redis的各种功能，比如列表键、发布与订阅、慢查询、监视器等。</li><li>每个链表节点由一个listNode结构来表示，每个节点都有一个指向前置节点和后置节点的指针，所以Redis的链表实现是双端链表。</li><li>每个链表使用一个list结构来表示，这个结构带有表头节点指针、表尾节点指针，以及链表长度等信息。</li><li>因为链表表头节点的前置节点和表尾节点的后置节点都指向NULL，所以Redis的链表实现是无环链表。</li><li>通过为链表设置不同的类型特定函数，Redis的链表可以用于保存各种不同类型的值。</li></ol>]]></content>
+      
+      
+      <categories>
+          
+          <category> 山不厌高 </category>
+          
+          <category> 笔记 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> Redis </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>Redis 设计与实现(3-字典)</title>
+      <link href="/RoyalLiang.github.io/post/f57febb8.html"/>
+      <url>/RoyalLiang.github.io/post/f57febb8.html</url>
+      
+        <content type="html"><![CDATA[<p>字典：用于保存键值对（key-value pair）的抽象数据结构。</p><p>字典是Redis的数据库的底层实现，也是哈希的底层实现之一，但由于C语言没有字典这一数据结构，所以Redis自己构建了该数据结构。</p><h3 id="字典的实现"><a href="#字典的实现" class="headerlink" title="字典的实现"></a>字典的实现</h3><p>Redis的字典使用哈希表作为底层实现，一个哈希表里面可以有多个哈希表节点，而每个哈希表节点就保存了字典中的一个键值对。</p><h4 id="Redis的哈希表实现"><a href="#Redis的哈希表实现" class="headerlink" title="Redis的哈希表实现"></a>Redis的哈希表实现</h4><p>Redis字典所使用的哈希表由dict.h&#x2F;dictht结构定义：</p><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">typedef struct dictht&#123;</span><br><span class="line">    //哈希表数组</span><br><span class="line">    dictEntry **table;</span><br><span class="line">    //哈希表大小</span><br><span class="line">    unsigned long size;</span><br><span class="line">    //哈希表大小掩码。用于计算索引值，总是等于size - 1</span><br><span class="line">    unsigned long sizemask;</span><br><span class="line">    //哈希表已有节点的数量</span><br><span class="line">    unsigned long used;</span><br><span class="line">&#125; dictht;</span><br></pre></td></tr></table></figure><blockquote><p>table属性是一个数组，数组中的每个元素都是一个指向dict.h&#x2F;dictEntry结构的指针，每个dictEntry结构保存着一个键值对。size属性记录了哈希表的大小，也即是table数组的大小，而used属性则记录了哈希表目前已有节点（键值对）的数量。sizemask属性的值总是等于size-1，这个属性和哈希值一起决定一个键应该被放到table数组的哪个索引上面。</p></blockquote><h4 id="哈希表节点"><a href="#哈希表节点" class="headerlink" title="哈希表节点"></a>哈希表节点</h4><p>哈希表节点使用dictEntry结构表示，每个dictEntry结构都保存着一个键值对：</p><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">typedef struct dictEntry&#123;</span><br><span class="line">    //键</span><br><span class="line">    void *key;</span><br><span class="line">    //值</span><br><span class="line">    union &#123;</span><br><span class="line">        void *val;</span><br><span class="line">        uint64_tu64;</span><br><span class="line">        int64_ts64;</span><br><span class="line">    &#125; v;</span><br><span class="line">    //指向下一个哈希表节点，形成链表</span><br><span class="line">    struct dictEntry *next;</span><br><span class="line">&#125; dictEntry;</span><br></pre></td></tr></table></figure><blockquote><p>key属性保存着键值对中的键，而v属性则保存着键值对中的值，其中键值对的值可以是一个指针，或者是一个uint64_t整数，又或者是一个int64_t整数。</p><p>next属性是指向另一个哈希表节点的指针，这个指针可以将多个哈希值相同的键值对连接在一次，以此来解决键冲突（collision）的问题。</p></blockquote><h4 id="字典"><a href="#字典" class="headerlink" title="字典"></a>字典</h4><p>Redis中的字典由dict.h&#x2F;dict结构表示：</p><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">typedef struct dict&#123;</span><br><span class="line">    //类型特定函数</span><br><span class="line">    dictType *type;</span><br><span class="line">    //私有数据</span><br><span class="line">    void *privdata;</span><br><span class="line">    //哈希表</span><br><span class="line">    dictht ht[2];</span><br><span class="line">    //rehash索引，当rehash不在进行时，值 == -1</span><br><span class="line">    int trehashidx;</span><br><span class="line">&#125; dict;</span><br></pre></td></tr></table></figure><p>type属性和privdata属性是针对不同类型的键值对，为创建多态字典而设置的：</p><blockquote><p>type属性是一个指向dictType结构的指针，每个dictType结构保存了一簇用于操作特定类型键值对的函数，Redis会为用途不同的字典设置不同的类型特定函数。</p><p>privdata属性保存了需要传给那些类型特定函数的可选参数。</p><p>ht属性是一个包含两个项的数组，数组中的每个项都是一个dictht哈希表，一般情况下，字典只使用ht[0]哈希表，ht[1]哈希表只会在对ht[0]哈希表进行rehash时使用。</p><p>rehashidx，它记录了rehash目前的进度，如果目前没有在进行rehash，那么它的值为-1。</p></blockquote><p>dictType结构体定义如下：</p><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">typedef struct dictType&#123;</span><br><span class="line">    //计算哈希值的函数</span><br><span class="line">    unsigned int (*hashFunction)(const void *key);</span><br><span class="line">    //复制键的函数</span><br><span class="line">    void *(*keyDup)(void *privdata, const void *key);</span><br><span class="line">    //复制值的函数</span><br><span class="line">    void *(*valDup)(void *privdata, const void *key);</span><br><span class="line">    //对比键的函数</span><br><span class="line">    int (*keyCompare)(void *privdata, const void *key1, const void *key2);</span><br><span class="line">    //销毁键的函数</span><br><span class="line">    void (*keyDestructor)(void *privdata, void *key);</span><br><span class="line">    //销毁值的函数</span><br><span class="line">    void (*valDestructor)(void *privdata, void *obj);</span><br><span class="line">&#125; dictType;</span><br></pre></td></tr></table></figure><p>（未完，待补充～）</p><p>下图是一个未进行rehash的普通字典案例：</p><p><img src="https://cdn.notfound.icu/hexo/lianbiao-rehash.png"></p><h3 id="哈希算法"><a href="#哈希算法" class="headerlink" title="哈希算法"></a>哈希算法</h3><p><strong>当字典被用作数据库的底层实现，或者哈希键的底层实现时，****Redis使用MurmurHash2算法来计算键的哈希值。</strong></p><blockquote><p>MurmurHash算法最初由Austin Appleby于2008年发明，这种算法的优点在于，即使输入的键是有规律的，算法仍能给出一个很好的随机分布性，并且算法的计算速度也非常快。</p></blockquote><p>对于新添加到字典的键值对来说，程序首先需要根据键进行哈希计算，计算出其哈希值与索引值，然后根据索引值，将包含新键值对的哈希表节点放到哈希表数组的指定索引上。</p><p>Redis计算哈希值与索引值的方法如下：</p><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">//使用字典设置的哈希函数，计算键的哈希值</span><br><span class="line">hash = dict -&gt; type -&gt; hashFunction(key);</span><br><span class="line">//使用哈希表的sizemask属性和哈希值，计算索引，根据不同情况，ht[x]可以是ht[0]或ht[1]</span><br><span class="line">idx = hash &amp; dict[x].sizemask</span><br></pre></td></tr></table></figure><p>eg：将 k0 与 v0 添加到字典</p><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">//1. 计算哈希</span><br><span class="line">hash = dict -&gt; type -&gt; hashFunction(k0);</span><br><span class="line">//2. 计算索引，设k0=8，dict -&gt; table 的 size为4</span><br><span class="line">idx = 8 &amp; ht[0].sizemask = 8 &amp; 3 = 0;</span><br><span class="line">//放置新的键值对</span><br><span class="line">//根据idx的值，新的键值对将会放在table数组的第一位</span><br></pre></td></tr></table></figure><p>示例图如下：</p><p><img src="https://cdn.notfound.icu/hexo/lianbiao-ex.png"></p><h3 id="键冲突"><a href="#键冲突" class="headerlink" title="键冲突"></a>键冲突</h3><p>当哈希表数组同一索引上的键等于或超过 2 以上时，就会产生键冲突，而<strong>Redis的哈希表通过链地址法来解决冲突。</strong></p><p>链地址法：</p><blockquote><p>每个哈希表节点都有一个next指针，多个哈希表节点可以用next指针构成一个单向链表，被分配到同一个索引上的多个节点可以用这个单向链表连接起来，以此解决键冲突的问题。</p><p>由于 dictEntry 节点组成的链表没有指向链表表尾的指针。为了速度考虑，程序总是将新节点添加到链表的表头位置。</p></blockquote><h3 id="rehash"><a href="#rehash" class="headerlink" title="rehash"></a>rehash</h3><p>随着操作的不断执行，为了让哈希表的负载因子（load factor）维持在一个合理的范围之内，当哈希表保存的键值对数量太多或者太少时，程序需要对哈希表的大小进行相应的扩展或者收缩。</p><p>Redis对字典的哈希表执行rehash的步骤如下：</p><ol><li>为字典ht[1]哈希表分配空间，空间大小取决于执行的操作，以及ht[0]当前的键值对数量（used属性的值）。</li></ol><ul><li>扩充操作：ht[1].size 等于第一个大于等于 ht[0].used * 2 的 2n</li><li>缩减操作：ht[1].size 等于第一个大于等于 ht[0].used 的 2n</li></ul><ol><li>将保存在ht[0]中的所有键值对rehash到ht[1]上，reshash指的是重新计算键的哈希值与索引值。</li><li>当ht[0]包含的所有键值对都迁移到了ht[1]之后（ht[0]变为空表），释放ht[0]，将ht[1]设置为ht[0]，并在ht[1]新创建一个空白哈希表，为下一次rehash做准备。</li></ol><h3 id="扩容-x2F-收缩条件"><a href="#扩容-x2F-收缩条件" class="headerlink" title="扩容&#x2F;收缩条件"></a>扩容&#x2F;收缩条件</h3><p>当出现一下任意情况时，哈希表会自动扩容</p><blockquote></blockquote><ul><li>服务器目前没有在执行BGSAVE命令或者BGREWRITEAOF命令，并且哈希表的负载因子大于等于1。</li><li>服务器目前正在执行BGSAVE命令或者BGREWRITEAOF命令，并且哈希表的负载因子大于等于5。</li></ul><p><code>负载因子</code>的计算如下：</p><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line"># 负载因子 = 哈希表已使用节点数 / 哈希表大小</span><br><span class="line">load_factory = ht[0].used / ht[0].size</span><br></pre></td></tr></table></figure><p>根据BGSAVE命令或BGREWRITEAOF命令是否正在执行，服务器执行扩展操作所需的负载因子并不相同，这是因为在执行BGSAVE命令或BGREWRITEAOF命令的过程中，Redis需要创建当前服务器进程的子进程，而大多数操作系统都采用写时复制（copy-on-write）技术来优化子进程的使用效率，所以在子进程存在期间，服务器会提高执行扩展操作所需的负载因子，从而尽可能地避免在子进程存在期间进行哈希表扩展操作，这可以避免不必要的内存写入操作，最大限度地节约内存。</p><p>备注：</p><blockquote><p>当哈希表的负载因子小于0.1时，程序自动开始对哈希表执行收缩操作。</p></blockquote><h4 id="渐进式rehash"><a href="#渐进式rehash" class="headerlink" title="渐进式rehash"></a>渐进式rehash</h4><p>扩展或收缩哈希表需要将ht[0]里面的所有键值对rehash到ht[1]里面，但是，这个rehash动作并不是一次性、集中式地完成的，而是分多次、渐进式地完成的。</p><p>哈希表渐进式rehash的详细步骤如下：</p><ol><li>为ht[1]分配空间，让字典同时持有ht[0]和ht[1]两个哈希表。</li><li>在字典中维持一个索引计数器变量rehashidx，并将它的值设置为0，表示rehash工作正式开始。</li><li>在rehash进行期间，每次对字典执行添加、删除、查找或者更新操作时，程序除了执行指定的操作以外，还会顺带将ht[0]哈希表在rehashidx索引上的所有键值对rehash到ht[1]，当rehash工作完成之后，程序将rehashidx属性的值加 1。</li><li>随着字典操作的不断执行，最终在某个时间点上，ht[0]的所有键值对都会被rehash至ht[1]，这时程序将rehashidx属性的值设为-1，表示rehash操作已完成。</li></ol><blockquote><p>在渐进式rehash进行期间，字典的删除（delete）、查找（find）、更新（update）等操作会在两个哈希表上进行。</p><p>在渐进式rehash执行期间，新添加到字典的键值对一律会保存到ht[1]里面，ht[0]则不再进行任何添加操作，保证ht[0]包含的键值对数量会只减不增，并随着rehash操作的执行而最终变成空表。</p></blockquote><h3 id="字典API"><a href="#字典API" class="headerlink" title="字典API"></a>字典API</h3><table><thead><tr><th>函数</th><th>功能</th><th>时间复杂度</th></tr></thead><tbody><tr><td>dictCreate</td><td>创建一个空字典</td><td>O(1)</td></tr><tr><td>dictAdd</td><td>添加指定的kv到字典中</td><td>O(1)</td></tr><tr><td>dictReplace</td><td>添加指定的kv到字典中，如果已经存在，则替换</td><td>O(1)</td></tr><tr><td>dictFetchValue</td><td>返回给定键的值</td><td>O(1)</td></tr><tr><td>dictGetRandomKey</td><td>返回随机的kv</td><td>O(1)</td></tr><tr><td>dictDelete</td><td>删除给定键对应的键值对</td><td>O(1)</td></tr><tr><td>dictRelease</td><td>释放给定字典</td><td>O(n)</td></tr></tbody></table><h3 id="字典总结"><a href="#字典总结" class="headerlink" title="字典总结"></a>字典总结</h3><blockquote><p>字典被广泛用于实现Redis的各种功能，其中包括数据库和哈希键。</p><p>Redis中的字典使用哈希表作为底层实现，每个字典带有两个哈希表，一个平时使用，另一个仅在进行rehash时使用。</p><p>当字典被用作数据库的底层实现，或者哈希键的底层实现时，Redis使用MurmurHash2算法来计算键的哈希值。</p><p>哈希表使用链地址法来解决键冲突，被分配到同一个索引上的多个键值对会连接成一个单向链表。</p><p>在对哈希表进行扩展或者收缩操作时，程序需要将现有哈希表包含的所有键值对rehash到新哈希表里面，并且这个rehash过程并不是一次性地完成的，而是渐进式地完成的。</p></blockquote>]]></content>
+      
+      
+      <categories>
+          
+          <category> 山不厌高 </category>
+          
+          <category> 笔记 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> Redis </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>CentOS7 安装Redis6.0</title>
+      <link href="/RoyalLiang.github.io/post/12a6d824.html"/>
+      <url>/RoyalLiang.github.io/post/12a6d824.html</url>
+      
+        <content type="html"><![CDATA[<p>今天给一台崭新的服务器(CentOS 7.7)安装Redis时才发现，Redis已经更新到了6.0(手动滑稽)，抱着用心不用旧的心态，立马喜滋滋地下载，上传到服务器上面开始安装，结果刚开始就碰壁了。再次记录一下安装的小坑。本文不讨论Redis6.0的新特性，仅记录安装踩到的坑。</p><h1 id="下载Redis6-0"><a href="#下载Redis6-0" class="headerlink" title="下载Redis6.0"></a>下载Redis6.0</h1><ol><li><p>使用linux wget命令：</p><blockquote><p>wget <a href="http://download.redis.io/releases/redis-6.0.1.tar.gz">http://download.redis.io/releases/redis-6.0.1.tar.gz</a></p></blockquote></li><li><p>前往官网下载，使用文件传输工具传输至服务器。</p></li></ol><h1 id="安装依赖"><a href="#安装依赖" class="headerlink" title="安装依赖"></a>安装依赖</h1><p>安装Redis需要安装依赖，命令如下：</p><blockquote><p>yum install gcc gcc-c++ -y</p></blockquote><p>需要注意的是，Redis6.0需要gcc版本不能过低，最好5.0版本以上，否则会编译出错。</p><p>升级系统gcc命令如下：</p><ol><li>安装centos-release-scl。</li></ol><blockquote><p>yum install centos-release-scl</p></blockquote><ol start="2"><li>安装devtoolset，注意，如果想安装7.<em>版本的，就改成devtoolset-7-gcc</em>。</li></ol><blockquote><p>yum install devtoolset-8-gcc*</p></blockquote><ol start="3"><li>激活对应的devtoolset，所以你可以一次安装多个版本的devtoolset，需要的时候用下面这条命令切换到对应的版本。</li></ol><blockquote><p>scl enable devtoolset-8 bash</p></blockquote><h1 id="编译、安装"><a href="#编译、安装" class="headerlink" title="编译、安装"></a>编译、安装</h1><p>解压安装包</p><blockquote><p>tar -zxvf 压缩包.tar.gz</p></blockquote><p>进入解压文件夹</p><blockquote><p>cd Redis安装包文件夹</p></blockquote><p>编译、安装</p><blockquote><p>make</p><p>make install </p></blockquote><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line"># 编译</span><br><span class="line">make</span><br><span class="line"># 安装</span><br><span class="line">make install PREFIX=/usr/local/redis# PREFIX后的路径可以修改成自己想改的</span><br></pre></td></tr></table></figure><h1 id="添加软链接"><a href="#添加软链接" class="headerlink" title="添加软链接"></a>添加软链接</h1><p>安装完成后，会发现redis-server，redis-cli命令不可用。不用着急。添加两个软连接就可以了，命令如下：</p><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">添加redis-server软连接</span><br><span class="line">ln -s /usr/local/redis/bin/redis-server /usr/bin/redis-server</span><br><span class="line">添加redis-cli软连接</span><br><span class="line">ln -s /usr/local/redis/bin/redis-scli /usr/bin/redis-cli</span><br></pre></td></tr></table></figure><p>以上就是全文安装教程，特此记录，网上破烂教程太多，坑的我不要不要的。</p>]]></content>
+      
+      
+      <categories>
+          
+          <category> Redis </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> Redis </tag>
+            
+            <tag> 教程 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>深入 dict 机制，转化类变量</title>
       <link href="/RoyalLiang.github.io/post/828dc49d.html"/>
       <url>/RoyalLiang.github.io/post/828dc49d.html</url>
@@ -262,141 +397,6 @@
         <tags>
             
             <tag> Redis </tag>
-            
-        </tags>
-      
-    </entry>
-    
-    
-    
-    <entry>
-      <title>动态规划问题思维导图</title>
-      <link href="/RoyalLiang.github.io/post/20af7554.html"/>
-      <url>/RoyalLiang.github.io/post/20af7554.html</url>
-      
-        <content type="html"><![CDATA[<p>附图一张<br><img src="https://cdn.notfound.icu/hexo/dongtai.png"></p>]]></content>
-      
-      
-      <categories>
-          
-          <category> 山不厌高 </category>
-          
-          <category> 笔记 </category>
-          
-      </categories>
-      
-      
-        <tags>
-            
-            <tag> 算法 </tag>
-            
-        </tags>
-      
-    </entry>
-    
-    
-    
-    <entry>
-      <title>Redis 设计与实现(3-字典)</title>
-      <link href="/RoyalLiang.github.io/post/f57febb8.html"/>
-      <url>/RoyalLiang.github.io/post/f57febb8.html</url>
-      
-        <content type="html"><![CDATA[<p>字典：用于保存键值对（key-value pair）的抽象数据结构。</p><p>字典是Redis的数据库的底层实现，也是哈希的底层实现之一，但由于C语言没有字典这一数据结构，所以Redis自己构建了该数据结构。</p><h3 id="字典的实现"><a href="#字典的实现" class="headerlink" title="字典的实现"></a>字典的实现</h3><p>Redis的字典使用哈希表作为底层实现，一个哈希表里面可以有多个哈希表节点，而每个哈希表节点就保存了字典中的一个键值对。</p><h4 id="Redis的哈希表实现"><a href="#Redis的哈希表实现" class="headerlink" title="Redis的哈希表实现"></a>Redis的哈希表实现</h4><p>Redis字典所使用的哈希表由dict.h&#x2F;dictht结构定义：</p><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">typedef struct dictht&#123;</span><br><span class="line">    //哈希表数组</span><br><span class="line">    dictEntry **table;</span><br><span class="line">    //哈希表大小</span><br><span class="line">    unsigned long size;</span><br><span class="line">    //哈希表大小掩码。用于计算索引值，总是等于size - 1</span><br><span class="line">    unsigned long sizemask;</span><br><span class="line">    //哈希表已有节点的数量</span><br><span class="line">    unsigned long used;</span><br><span class="line">&#125; dictht;</span><br></pre></td></tr></table></figure><blockquote><p>table属性是一个数组，数组中的每个元素都是一个指向dict.h&#x2F;dictEntry结构的指针，每个dictEntry结构保存着一个键值对。size属性记录了哈希表的大小，也即是table数组的大小，而used属性则记录了哈希表目前已有节点（键值对）的数量。sizemask属性的值总是等于size-1，这个属性和哈希值一起决定一个键应该被放到table数组的哪个索引上面。</p></blockquote><h4 id="哈希表节点"><a href="#哈希表节点" class="headerlink" title="哈希表节点"></a>哈希表节点</h4><p>哈希表节点使用dictEntry结构表示，每个dictEntry结构都保存着一个键值对：</p><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">typedef struct dictEntry&#123;</span><br><span class="line">    //键</span><br><span class="line">    void *key;</span><br><span class="line">    //值</span><br><span class="line">    union &#123;</span><br><span class="line">        void *val;</span><br><span class="line">        uint64_tu64;</span><br><span class="line">        int64_ts64;</span><br><span class="line">    &#125; v;</span><br><span class="line">    //指向下一个哈希表节点，形成链表</span><br><span class="line">    struct dictEntry *next;</span><br><span class="line">&#125; dictEntry;</span><br></pre></td></tr></table></figure><blockquote><p>key属性保存着键值对中的键，而v属性则保存着键值对中的值，其中键值对的值可以是一个指针，或者是一个uint64_t整数，又或者是一个int64_t整数。</p><p>next属性是指向另一个哈希表节点的指针，这个指针可以将多个哈希值相同的键值对连接在一次，以此来解决键冲突（collision）的问题。</p></blockquote><h4 id="字典"><a href="#字典" class="headerlink" title="字典"></a>字典</h4><p>Redis中的字典由dict.h&#x2F;dict结构表示：</p><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">typedef struct dict&#123;</span><br><span class="line">    //类型特定函数</span><br><span class="line">    dictType *type;</span><br><span class="line">    //私有数据</span><br><span class="line">    void *privdata;</span><br><span class="line">    //哈希表</span><br><span class="line">    dictht ht[2];</span><br><span class="line">    //rehash索引，当rehash不在进行时，值 == -1</span><br><span class="line">    int trehashidx;</span><br><span class="line">&#125; dict;</span><br></pre></td></tr></table></figure><p>type属性和privdata属性是针对不同类型的键值对，为创建多态字典而设置的：</p><blockquote><p>type属性是一个指向dictType结构的指针，每个dictType结构保存了一簇用于操作特定类型键值对的函数，Redis会为用途不同的字典设置不同的类型特定函数。</p><p>privdata属性保存了需要传给那些类型特定函数的可选参数。</p><p>ht属性是一个包含两个项的数组，数组中的每个项都是一个dictht哈希表，一般情况下，字典只使用ht[0]哈希表，ht[1]哈希表只会在对ht[0]哈希表进行rehash时使用。</p><p>rehashidx，它记录了rehash目前的进度，如果目前没有在进行rehash，那么它的值为-1。</p></blockquote><p>dictType结构体定义如下：</p><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">typedef struct dictType&#123;</span><br><span class="line">    //计算哈希值的函数</span><br><span class="line">    unsigned int (*hashFunction)(const void *key);</span><br><span class="line">    //复制键的函数</span><br><span class="line">    void *(*keyDup)(void *privdata, const void *key);</span><br><span class="line">    //复制值的函数</span><br><span class="line">    void *(*valDup)(void *privdata, const void *key);</span><br><span class="line">    //对比键的函数</span><br><span class="line">    int (*keyCompare)(void *privdata, const void *key1, const void *key2);</span><br><span class="line">    //销毁键的函数</span><br><span class="line">    void (*keyDestructor)(void *privdata, void *key);</span><br><span class="line">    //销毁值的函数</span><br><span class="line">    void (*valDestructor)(void *privdata, void *obj);</span><br><span class="line">&#125; dictType;</span><br></pre></td></tr></table></figure><p>（未完，待补充～）</p><p>下图是一个未进行rehash的普通字典案例：</p><p><img src="https://cdn.notfound.icu/hexo/lianbiao-rehash.png"></p><h3 id="哈希算法"><a href="#哈希算法" class="headerlink" title="哈希算法"></a>哈希算法</h3><p><strong>当字典被用作数据库的底层实现，或者哈希键的底层实现时，****Redis使用MurmurHash2算法来计算键的哈希值。</strong></p><blockquote><p>MurmurHash算法最初由Austin Appleby于2008年发明，这种算法的优点在于，即使输入的键是有规律的，算法仍能给出一个很好的随机分布性，并且算法的计算速度也非常快。</p></blockquote><p>对于新添加到字典的键值对来说，程序首先需要根据键进行哈希计算，计算出其哈希值与索引值，然后根据索引值，将包含新键值对的哈希表节点放到哈希表数组的指定索引上。</p><p>Redis计算哈希值与索引值的方法如下：</p><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">//使用字典设置的哈希函数，计算键的哈希值</span><br><span class="line">hash = dict -&gt; type -&gt; hashFunction(key);</span><br><span class="line">//使用哈希表的sizemask属性和哈希值，计算索引，根据不同情况，ht[x]可以是ht[0]或ht[1]</span><br><span class="line">idx = hash &amp; dict[x].sizemask</span><br></pre></td></tr></table></figure><p>eg：将 k0 与 v0 添加到字典</p><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">//1. 计算哈希</span><br><span class="line">hash = dict -&gt; type -&gt; hashFunction(k0);</span><br><span class="line">//2. 计算索引，设k0=8，dict -&gt; table 的 size为4</span><br><span class="line">idx = 8 &amp; ht[0].sizemask = 8 &amp; 3 = 0;</span><br><span class="line">//放置新的键值对</span><br><span class="line">//根据idx的值，新的键值对将会放在table数组的第一位</span><br></pre></td></tr></table></figure><p>示例图如下：</p><p><img src="https://cdn.notfound.icu/hexo/lianbiao-ex.png"></p><h3 id="键冲突"><a href="#键冲突" class="headerlink" title="键冲突"></a>键冲突</h3><p>当哈希表数组同一索引上的键等于或超过 2 以上时，就会产生键冲突，而<strong>Redis的哈希表通过链地址法来解决冲突。</strong></p><p>链地址法：</p><blockquote><p>每个哈希表节点都有一个next指针，多个哈希表节点可以用next指针构成一个单向链表，被分配到同一个索引上的多个节点可以用这个单向链表连接起来，以此解决键冲突的问题。</p><p>由于 dictEntry 节点组成的链表没有指向链表表尾的指针。为了速度考虑，程序总是将新节点添加到链表的表头位置。</p></blockquote><h3 id="rehash"><a href="#rehash" class="headerlink" title="rehash"></a>rehash</h3><p>随着操作的不断执行，为了让哈希表的负载因子（load factor）维持在一个合理的范围之内，当哈希表保存的键值对数量太多或者太少时，程序需要对哈希表的大小进行相应的扩展或者收缩。</p><p>Redis对字典的哈希表执行rehash的步骤如下：</p><ol><li>为字典ht[1]哈希表分配空间，空间大小取决于执行的操作，以及ht[0]当前的键值对数量（used属性的值）。</li></ol><ul><li>扩充操作：ht[1].size 等于第一个大于等于 ht[0].used * 2 的 2n</li><li>缩减操作：ht[1].size 等于第一个大于等于 ht[0].used 的 2n</li></ul><ol><li>将保存在ht[0]中的所有键值对rehash到ht[1]上，reshash指的是重新计算键的哈希值与索引值。</li><li>当ht[0]包含的所有键值对都迁移到了ht[1]之后（ht[0]变为空表），释放ht[0]，将ht[1]设置为ht[0]，并在ht[1]新创建一个空白哈希表，为下一次rehash做准备。</li></ol><h3 id="扩容-x2F-收缩条件"><a href="#扩容-x2F-收缩条件" class="headerlink" title="扩容&#x2F;收缩条件"></a>扩容&#x2F;收缩条件</h3><p>当出现一下任意情况时，哈希表会自动扩容</p><blockquote></blockquote><ul><li>服务器目前没有在执行BGSAVE命令或者BGREWRITEAOF命令，并且哈希表的负载因子大于等于1。</li><li>服务器目前正在执行BGSAVE命令或者BGREWRITEAOF命令，并且哈希表的负载因子大于等于5。</li></ul><p><code>负载因子</code>的计算如下：</p><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line"># 负载因子 = 哈希表已使用节点数 / 哈希表大小</span><br><span class="line">load_factory = ht[0].used / ht[0].size</span><br></pre></td></tr></table></figure><p>根据BGSAVE命令或BGREWRITEAOF命令是否正在执行，服务器执行扩展操作所需的负载因子并不相同，这是因为在执行BGSAVE命令或BGREWRITEAOF命令的过程中，Redis需要创建当前服务器进程的子进程，而大多数操作系统都采用写时复制（copy-on-write）技术来优化子进程的使用效率，所以在子进程存在期间，服务器会提高执行扩展操作所需的负载因子，从而尽可能地避免在子进程存在期间进行哈希表扩展操作，这可以避免不必要的内存写入操作，最大限度地节约内存。</p><p>备注：</p><blockquote><p>当哈希表的负载因子小于0.1时，程序自动开始对哈希表执行收缩操作。</p></blockquote><h4 id="渐进式rehash"><a href="#渐进式rehash" class="headerlink" title="渐进式rehash"></a>渐进式rehash</h4><p>扩展或收缩哈希表需要将ht[0]里面的所有键值对rehash到ht[1]里面，但是，这个rehash动作并不是一次性、集中式地完成的，而是分多次、渐进式地完成的。</p><p>哈希表渐进式rehash的详细步骤如下：</p><ol><li>为ht[1]分配空间，让字典同时持有ht[0]和ht[1]两个哈希表。</li><li>在字典中维持一个索引计数器变量rehashidx，并将它的值设置为0，表示rehash工作正式开始。</li><li>在rehash进行期间，每次对字典执行添加、删除、查找或者更新操作时，程序除了执行指定的操作以外，还会顺带将ht[0]哈希表在rehashidx索引上的所有键值对rehash到ht[1]，当rehash工作完成之后，程序将rehashidx属性的值加 1。</li><li>随着字典操作的不断执行，最终在某个时间点上，ht[0]的所有键值对都会被rehash至ht[1]，这时程序将rehashidx属性的值设为-1，表示rehash操作已完成。</li></ol><blockquote><p>在渐进式rehash进行期间，字典的删除（delete）、查找（find）、更新（update）等操作会在两个哈希表上进行。</p><p>在渐进式rehash执行期间，新添加到字典的键值对一律会保存到ht[1]里面，ht[0]则不再进行任何添加操作，保证ht[0]包含的键值对数量会只减不增，并随着rehash操作的执行而最终变成空表。</p></blockquote><h3 id="字典API"><a href="#字典API" class="headerlink" title="字典API"></a>字典API</h3><table><thead><tr><th>函数</th><th>功能</th><th>时间复杂度</th></tr></thead><tbody><tr><td>dictCreate</td><td>创建一个空字典</td><td>O(1)</td></tr><tr><td>dictAdd</td><td>添加指定的kv到字典中</td><td>O(1)</td></tr><tr><td>dictReplace</td><td>添加指定的kv到字典中，如果已经存在，则替换</td><td>O(1)</td></tr><tr><td>dictFetchValue</td><td>返回给定键的值</td><td>O(1)</td></tr><tr><td>dictGetRandomKey</td><td>返回随机的kv</td><td>O(1)</td></tr><tr><td>dictDelete</td><td>删除给定键对应的键值对</td><td>O(1)</td></tr><tr><td>dictRelease</td><td>释放给定字典</td><td>O(n)</td></tr></tbody></table><h3 id="字典总结"><a href="#字典总结" class="headerlink" title="字典总结"></a>字典总结</h3><blockquote><p>字典被广泛用于实现Redis的各种功能，其中包括数据库和哈希键。</p><p>Redis中的字典使用哈希表作为底层实现，每个字典带有两个哈希表，一个平时使用，另一个仅在进行rehash时使用。</p><p>当字典被用作数据库的底层实现，或者哈希键的底层实现时，Redis使用MurmurHash2算法来计算键的哈希值。</p><p>哈希表使用链地址法来解决键冲突，被分配到同一个索引上的多个键值对会连接成一个单向链表。</p><p>在对哈希表进行扩展或者收缩操作时，程序需要将现有哈希表包含的所有键值对rehash到新哈希表里面，并且这个rehash过程并不是一次性地完成的，而是渐进式地完成的。</p></blockquote>]]></content>
-      
-      
-      <categories>
-          
-          <category> 山不厌高 </category>
-          
-          <category> 笔记 </category>
-          
-      </categories>
-      
-      
-        <tags>
-            
-            <tag> Redis </tag>
-            
-        </tags>
-      
-    </entry>
-    
-    
-    
-    <entry>
-      <title>Redis设计与实现（2-链表）</title>
-      <link href="/RoyalLiang.github.io/post/717cfc9a.html"/>
-      <url>/RoyalLiang.github.io/post/717cfc9a.html</url>
-      
-        <content type="html"><![CDATA[<p>链表是Redis底层用非常广泛的数据结构。使用范围包含但不限于：列表键，发布与订阅、慢查询、监视器、客户端状态信息等</p><h3 id="链表节点实现"><a href="#链表节点实现" class="headerlink" title="链表节点实现"></a>链表节点实现</h3><p>每个链表节点使用一个adlist.h&#x2F;listNode结构来表示：</p><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">typedef struct listNode&#123;</span><br><span class="line">    //前置节点</span><br><span class="line">    struct listNode * prev;</span><br><span class="line">    //后置节点</span><br><span class="line">    struct listNode * next;</span><br><span class="line">    //节点值</span><br><span class="line">    void * value;</span><br><span class="line">&#125;listNode;</span><br></pre></td></tr></table></figure><p>使用多个listNode结构就可以组成链表，但使用adlist.h&#x2F;list来持有链表的话，操作起来会更方便：</p><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">typedef struct list&#123;</span><br><span class="line">    //头节点</span><br><span class="line">    listNode * head;</span><br><span class="line">    //尾节点</span><br><span class="line">    listNode * tail;</span><br><span class="line">    //链表节点数量</span><br><span class="line">    unsigned long len;</span><br><span class="line">    //节点值复制函数</span><br><span class="line">    void *(*dup)(void *ptr);</span><br><span class="line">    //节点值释放函数</span><br><span class="line">    void *(*free)(void *ptr);</span><br><span class="line">    //节点值比较函数</span><br><span class="line">    void *(*match)(void *ptr, void *key);</span><br><span class="line">&#125;list;</span><br></pre></td></tr></table></figure><blockquote><p>list结构为链表提供了表头指针head、表尾指针tail，以及链表长度计数器len，而dup、free和match成员则是用于实现多态链表所需的类型特定函数：</p></blockquote><ol><li>dup函数用于复制链表节点所保存的值；</li><li>free函数用于释放链表节点所保存的值；</li><li>match函数则用于对比链表节点所保存的值和另一个输入值是否相等。</li></ol><p>Redis链表特征：</p><ol><li>双端，每个节点都带有prev节点和next节点。</li><li>无环，表头节点的prev指针和表尾节点的next指针都指向NULL，对链表的访问以NULL为终点。</li><li>带表头指针和表尾指针。</li><li>带链表长度计数器，程序使用list结构的len属性来对list持有的链表节点进行计数。</li><li>多态，链表节点使用void*指针来保存节点值，并且可以通过list结构的dup、free、match三个属性为节点值设置类型特定函数，所以链表可以用于保存各种不同类型的值。</li></ol><h3 id="链表-API"><a href="#链表-API" class="headerlink" title="链表 API"></a>链表 API</h3><table><thead><tr><th>函数</th><th>作用</th><th>时间复杂度</th></tr></thead><tbody><tr><td>listSetDupMethod</td><td>将给定的函数设置成链表节点值复制函数</td><td>O(1)，通过链表的dup属性直接获得</td></tr><tr><td>listGetDupMethod</td><td>返回链表当前正在使用的节点值复制函数</td><td>O(1)</td></tr><tr><td>listSetFreeMethod</td><td>将给定的函数设置成链表节点值释放函数</td><td>O(1)</td></tr><tr><td>listGetFree</td><td>返回链表当前节点值释放函数</td><td>O(1)</td></tr><tr><td>listSetMatchMethod</td><td>将给定的函数设置成链表节点值对比函数</td><td>O(1)</td></tr><tr><td>listGetMatchMethod</td><td>返回链表当前节点值对比函数</td><td>O(1)</td></tr><tr><td>listLength</td><td>返回链表长度</td><td>O(1)</td></tr><tr><td>listFirst</td><td>返回链表头节点</td><td>O(1)</td></tr><tr><td>listLast</td><td>返回链表尾节点</td><td>O(1)</td></tr><tr><td>listPrevNode</td><td>返回给定节点的前置节点</td><td>O(1)</td></tr><tr><td>listNextNode</td><td>返回给定节点的后置节点</td><td>O(1)</td></tr><tr><td>listNodeValue</td><td>返回给定节点当前值</td><td>O(1)</td></tr><tr><td>listCreate</td><td>创建不包含任何值的空链表</td><td>O(1)</td></tr><tr><td>listAddNodeHead</td><td>将给定值的新节点添加到表头</td><td>O(1)</td></tr><tr><td>listAddNodeTail</td><td>将给定值的新节点添加到表尾</td><td>O(1)</td></tr><tr><td>listInsertNode</td><td>将给定值的新节点插入到链表指定位置</td><td>O(1)</td></tr><tr><td>listSearchKey</td><td>查找并返回链表中给定值的节点</td><td>O(n)</td></tr><tr><td>listIndex</td><td>返回链表给定索引的节点</td><td>O(n)</td></tr><tr><td>listDelNode</td><td>删除链表给定节点</td><td>O(n)</td></tr><tr><td>listRotate</td><td>将表尾节点弹出并设置成新的表头节点</td><td>O(1)</td></tr><tr><td>listDup</td><td>添加给定链表副本</td><td>O(n)</td></tr><tr><td>listRelease</td><td>释放给定链表</td><td>O(n)</td></tr></tbody></table><h3 id="链表总结"><a href="#链表总结" class="headerlink" title="链表总结"></a>链表总结</h3><ol><li>链表被广泛用于实现Redis的各种功能，比如列表键、发布与订阅、慢查询、监视器等。</li><li>每个链表节点由一个listNode结构来表示，每个节点都有一个指向前置节点和后置节点的指针，所以Redis的链表实现是双端链表。</li><li>每个链表使用一个list结构来表示，这个结构带有表头节点指针、表尾节点指针，以及链表长度等信息。</li><li>因为链表表头节点的前置节点和表尾节点的后置节点都指向NULL，所以Redis的链表实现是无环链表。</li><li>通过为链表设置不同的类型特定函数，Redis的链表可以用于保存各种不同类型的值。</li></ol>]]></content>
-      
-      
-      <categories>
-          
-          <category> 山不厌高 </category>
-          
-          <category> 笔记 </category>
-          
-      </categories>
-      
-      
-        <tags>
-            
-            <tag> Redis </tag>
-            
-        </tags>
-      
-    </entry>
-    
-    
-    
-    <entry>
-      <title>Redis设计与实现（1-字符串）</title>
-      <link href="/RoyalLiang.github.io/post/8c0492ea.html"/>
-      <url>/RoyalLiang.github.io/post/8c0492ea.html</url>
-      
-        <content type="html"><![CDATA[<p>每个sds.h&#x2F;sdshdr结构表示一个SDS值：</p><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">struct sdshdr&#123;</span><br><span class="line">    //记录buf数组重已使用字节的数量，等于SDS所保存字符串的长度</span><br><span class="line">    int len;</span><br><span class="line">    //记录buf数组中未使用字节的数量</span><br><span class="line">    int free;</span><br><span class="line">    //字节数组，用来保存字符串</span><br><span class="line">    char buf[];</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><blockquote><p>free属性的值为0，表示这个SDS没有分配任何未使用空间。</p><p>len属性的值为5，表示这个SDS保存了一个五字节长的字符串。</p><p>buf属性是一个char类型的数组，最后一个字节保存空字符’\0’。</p><p>SDS遵循C字符串以空字符结尾的惯例，保存空字符的1字节空间不计算在SDS的len属性里面。</p></blockquote><p>示例：</p><p><img src="https://cdn.notfound.icu/hexo/sds.png"></p><p><strong>SDS遵循C字符串以空字符结尾的惯例，保存空字符的1字节空间不计算在SDS的len属性里面。</strong></p><p><strong>通过 len 属性，</strong><code>SDS</code> 获取字符串长度时，其时间复杂度为 O(1) 。</p><p><strong>通过检查SDS的空间是否满足修改所需的要求，杜绝了缓冲区溢出的可能性。</strong></p><p>当 SDS API 需要对<code>SDS</code>进行修改时，API 会先检查<code>SDS</code>的空间是否满足修改所需的要求，如果不满足的话，API 会自动将<code>SDS</code>的空间扩展至执行修改所需的大小，然后才执行实际的修改操作。</p><p><strong>通过未使用空间解除了字符串长度和底层数组长度之间的关联，减少了内存重分配的次数。</strong></p><p>在<code>SDS</code>中，buf 数组的长度不一定就是字符数量加一，数组里面可以包含未使用的字节，而这些字节的数量就由<code>SDS</code>的 free 属性记录。</p><p><strong>通过未使用空间，</strong><strong><code>SDS</code>实现了空间预分配和惰性空间释放两种优化策略。</strong></p><p>空间预分配用于优化<code>SDS</code>的字符串增长操作：当<code>SDS</code>的 API 对一个SDS进行修改，并且需要对<code>SDS</code>进行空间扩展的时候，程序不仅会为<code>SDS</code>分配修改所必要的空间，还会为<code>SDS</code>分配额外的未使用空间。</p><p>惰性空间释放用于优化<code>SDS</code>的字符串缩短操作：当<code>SDS</code>的 API 需要缩短<code>SDS</code>保存的字符串时，程序并不立即使用内存重分配来回收缩短后多出来的字节，而是使用 free 属性将这些字节的数量记录起来，并等待将来使用。</p><p><strong><code>SDS</code> 是二进制安全的。</strong></p><p>所有 SDS API 都会以处理二进制的方式来处理<code>SDS</code>存放在 buf 数组里的数据。</p><h3 id="SDS-API"><a href="#SDS-API" class="headerlink" title="SDS API"></a>SDS API</h3><p><img src="https://cdn.notfound.icu/hexo/sdsapi.png"></p>]]></content>
-      
-      
-      <categories>
-          
-          <category> 山不厌高 </category>
-          
-          <category> 笔记 </category>
-          
-      </categories>
-      
-      
-        <tags>
-            
-            <tag> Redis </tag>
-            
-        </tags>
-      
-    </entry>
-    
-    
-    
-    <entry>
-      <title>CentOS7 安装Redis6.0</title>
-      <link href="/RoyalLiang.github.io/post/12a6d824.html"/>
-      <url>/RoyalLiang.github.io/post/12a6d824.html</url>
-      
-        <content type="html"><![CDATA[<p>今天给一台崭新的服务器(CentOS 7.7)安装Redis时才发现，Redis已经更新到了6.0(手动滑稽)，抱着用心不用旧的心态，立马喜滋滋地下载，上传到服务器上面开始安装，结果刚开始就碰壁了。再次记录一下安装的小坑。本文不讨论Redis6.0的新特性，仅记录安装踩到的坑。</p><h1 id="下载Redis6-0"><a href="#下载Redis6-0" class="headerlink" title="下载Redis6.0"></a>下载Redis6.0</h1><ol><li><p>使用linux wget命令：</p><blockquote><p>wget <a href="http://download.redis.io/releases/redis-6.0.1.tar.gz">http://download.redis.io/releases/redis-6.0.1.tar.gz</a></p></blockquote></li><li><p>前往官网下载，使用文件传输工具传输至服务器。</p></li></ol><h1 id="安装依赖"><a href="#安装依赖" class="headerlink" title="安装依赖"></a>安装依赖</h1><p>安装Redis需要安装依赖，命令如下：</p><blockquote><p>yum install gcc gcc-c++ -y</p></blockquote><p>需要注意的是，Redis6.0需要gcc版本不能过低，最好5.0版本以上，否则会编译出错。</p><p>升级系统gcc命令如下：</p><ol><li>安装centos-release-scl。</li></ol><blockquote><p>yum install centos-release-scl</p></blockquote><ol start="2"><li>安装devtoolset，注意，如果想安装7.<em>版本的，就改成devtoolset-7-gcc</em>。</li></ol><blockquote><p>yum install devtoolset-8-gcc*</p></blockquote><ol start="3"><li>激活对应的devtoolset，所以你可以一次安装多个版本的devtoolset，需要的时候用下面这条命令切换到对应的版本。</li></ol><blockquote><p>scl enable devtoolset-8 bash</p></blockquote><h1 id="编译、安装"><a href="#编译、安装" class="headerlink" title="编译、安装"></a>编译、安装</h1><p>解压安装包</p><blockquote><p>tar -zxvf 压缩包.tar.gz</p></blockquote><p>进入解压文件夹</p><blockquote><p>cd Redis安装包文件夹</p></blockquote><p>编译、安装</p><blockquote><p>make</p><p>make install </p></blockquote><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line"># 编译</span><br><span class="line">make</span><br><span class="line"># 安装</span><br><span class="line">make install PREFIX=/usr/local/redis# PREFIX后的路径可以修改成自己想改的</span><br></pre></td></tr></table></figure><h1 id="添加软链接"><a href="#添加软链接" class="headerlink" title="添加软链接"></a>添加软链接</h1><p>安装完成后，会发现redis-server，redis-cli命令不可用。不用着急。添加两个软连接就可以了，命令如下：</p><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">添加redis-server软连接</span><br><span class="line">ln -s /usr/local/redis/bin/redis-server /usr/bin/redis-server</span><br><span class="line">添加redis-cli软连接</span><br><span class="line">ln -s /usr/local/redis/bin/redis-scli /usr/bin/redis-cli</span><br></pre></td></tr></table></figure><p>以上就是全文安装教程，特此记录，网上破烂教程太多，坑的我不要不要的。</p>]]></content>
-      
-      
-      <categories>
-          
-          <category> Redis </category>
-          
-      </categories>
-      
-      
-        <tags>
-            
-            <tag> Redis </tag>
-            
-            <tag> 教程 </tag>
             
         </tags>
       
